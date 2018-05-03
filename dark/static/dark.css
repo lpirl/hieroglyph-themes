@@ -40,15 +40,35 @@ slides.layout-widescreen > slide {
   right: 0;
   bottom: 0;
   left: 0;
+  border-radius: 0;
 }
 
 slides > slide {
   font-family: Ubuntu, sans-serif;
+  font-size: 2vw;
   background-color: black;
+  color: #fff;
+
+  border: 1px solid red;
+}
+
+.title-slide hgroup h1,
+.title-slide hgroup h2,
+h1, h2, h3, h4, h5, h6  {
+  letter-spacing: -.02em;
+  font-size: 4vw;
+  color: #fff;
 }
 
 .title-slide hgroup h1 {
-  font-size: 4vw;
-  letter-spacing: -.02em;
-  color: #fff;
+  font-size: 6vw;
+}
+.title-slide hgroup h2 {
+  font-size: 2vw;
+}
+
+/* slide numbers */
+slide.current::after {
+  font-size: 1vw;
+  color: #757575;
 }
