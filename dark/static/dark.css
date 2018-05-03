@@ -27,10 +27,9 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  overflow: hidden;
 }
 
-#slide_container {
+#slide_container.layout-regular {
   /* thanks to https://stackoverflow.com/a/20593342 */
   position: absolute;
   width: 100vw;
@@ -44,12 +43,37 @@ body {
   left: 0;
 }
 
-/* hide previous and next slide displays */
-.slide-area,
-.slides > article,
-.slides > article.next,
-.slides > article.past {
-  display: none
+#prev-slide-area,
+#next-slide-area {
+  width: 100vw;
+  margin: 0;
+}
+
+#prev-slide-area {
+  left: -110vw;
+}
+
+#next-slide-area {
+  left: 110vw;
+}
+
+/* turn off certain animations, since they use fixed distances */
+.slides article,
+.slides.table article,
+.slides.table > article.next,
+.slides.table > article.past {
+  transition: none !important;
+  -o-transition: none !important;
+  -moz-transition: none !important;
+  -webkit-transform: none !important;
+}
+
+/* "Globally" sets the font size relative to view port size.
+All contained font sizes should be relative (e.g., [r]em, %),
+so they scale nicely. */
+.slides {
+  font-size: 2vw;
+  border: 1px solid red;
 }
 
 .slides > article {
@@ -63,38 +87,93 @@ body {
   left: 0;
   border-radius: 0;
   letter-spacing: normal;
-  padding: 1em;
 }
-
 
 /* styling defaults */
 body,
-.slides > article {
+.slides > article,
+.slides.table > article,
+#presenter_notes {
   font-family: Ubuntu, sans-serif;
-  font-size: 2vw;
+  padding: 1em;
   background: #000;
   color: #fff;
+}
 
-  border: 1px solid red;
+/* BEGIN slides in general */
+.slides article {
+  margin: 1vw;
+}
+/* END slides in general */
+
+/* BEGIN overview */
+.layout-regular.slides.table > article {
+  width: 30vw;
+  height: 16.875vw;
+  font-size: 80%;
+}
+/* END overview */
+
+.slides.table > article,
+.slides.table > article.past,
+.slides.table > article.next {
+  border: 1px solid #fff;
+  border-radius: 0;
+  box-shadow: none;
+/*
+  width: 47vw !important;
+
+  height: 26.4375vw !important;
+*/
+}
+
+.slides.table > article:hover {
+  border: 1px solid #018571;
+  box-shadow: none;
+}
+
+.slides.table > article.past,
+.slides.table > article.next {
+  opacity: .5;
+  z-index: -100;
+}
+
+.slides.table > article.past {
+  margin-left: -48vw !important;
+}
+
+.slides.table > article.next {
+  margin-left: 18vw !important;
+}
+
+#presenter_notes {
+  font-size: 50%;
+  border: 1px solid #757575;
+  top: 25vw;
 }
 
 h1, h2, h3, h4, h5, h6  {
   letter-spacing: -.02em;
-  font-size: 4vw;
+  font-size: 200%;
   color: #fff;
   margin-top: 0;
+  min-height: 2em;
 }
 
 h1 {
-  font-size: 6vw;
+  font-size: 300%;
   margin-top: 3em;
   margin-bottom: 1em;
 }
 
 h2 {
-  font-size: 4vw;
+  font-size: 200%;
 }
 
 h3 {
-  font-size: 3vw;
+  font-size: 150%;
+}
+
+p {
+  margin-top: .75em;
 }
