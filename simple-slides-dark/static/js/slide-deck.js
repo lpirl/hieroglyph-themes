@@ -336,11 +336,6 @@ SlideDeck.prototype.loadConfig_ = function(config) {
     this.addFavIcon_(settings.favIcon);
   }
 
-  // Prettyprint. Default to on.
-  if (!!!('usePrettify' in settings) || settings.usePrettify) {
-    prettyPrint();
-  }
-
   if (settings.analytics) {
     this.loadAnalytics_();
   }
