@@ -45,7 +45,7 @@ slides > slide {
 }
 
 
-slides > slide:not(.title-slide):after {
+slides > slide:not(.title-slide)::after {
   color: #757575;
 
   /* there is also ``attr(data-total-slides)`` */
@@ -107,6 +107,33 @@ table tr:nth-child(odd) {
 .overview .slide-area {
   display: none;
 }
+
+.black-text             {color:             black;}
+.black-background       {color:             black;}
+.gray-text              {color:             #757575;}
+.gray-background        {color:             #757575;}
+.white-text             {color:             white;}
+.white-background       {color:             white;}
+.turquoise-text         {color:             #018571;}
+.turquoise-background   {background-color:  #018571;}
+.highlight1-text        {color:             #018571;}
+.highlight1-background  {background-color:  #018571;}
+.blue-text              {color:             #077cc0;}
+.blue-background        {background-color:  #077cc0;}
+.highlight2-text        {color:             #077cc0;}
+.highlight2-background  {background-color:  #077cc0;}
+.green-text             {color:             #008837;}
+.green-background       {background-color:  #008837;}
+.positive-text          {color:             #008837;}
+.positive-background    {background-color:  #008837;}
+.orange-text            {color:             #c65301;}
+.orange-background      {background-color:  #c65301;}
+.negative-text          {color:             #c65301;}
+.negative-background    {background-color:  #c65301;}
+.red-text               {color:             #eb0027;}
+.red-background         {background-color:  #eb0027;}
+.drastic-text           {color:             #eb0027;}
+.drastic-background     {background-color:  #eb0027;}
 
 @media print {
   slides slide {

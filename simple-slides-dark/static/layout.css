@@ -76,7 +76,7 @@ slides > slide.current {
   opacity: 1;
 }
 
-slides > slide:not(.title-slide):after {
+slides > slide:not(.title-slide)::after {
   position: absolute;
   bottom: .25em;
   right: .25em;
@@ -159,16 +159,16 @@ q {
   line-height: 1.25em;
 }
 
-.quote:before,
- q:before {
+.quote::before,
+ q::before {
   content: '“';
   font-size: 2em;
   position: absolute;
   margin-left: -0.5em;
 }
 
-.quote:after,
-q:after {
+.quote::after,
+q::after {
   content: '”';
   font-size: 2em;
   position: absolute;
@@ -178,6 +178,23 @@ q:after {
 slide.fill {
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+slide.fill img,
+slide.fill iframe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 100%;
+  min-height: 100%;
+  border: 0;
+  margin: 0;
+  z-index: -1;
+}
+
+img.centered {
+  margin: 0 auto;
+  display: block;
 }
 
 .build .to-build {
@@ -310,8 +327,6 @@ slide.fill {
 .overview .slide-area {
   display: none;
 }
-
-/* WIP marker – above: done, below: to do */
 
 @media print {
   slides slide {
