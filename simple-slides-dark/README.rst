@@ -12,3 +12,17 @@ b) the "parent" themes are not really under active development, so the
 maintenance overhead to adopt changes is probably low;
 d) we have to duplicate code anyway, we can take the opportunity and do
 a complete fork in order to clean up what we do not want.
+
+Presenter mode
+--------------
+
+The slides contain a presenter mode feature (beta) to view + control
+the slides from a popup window.
+
+To enable presenter mode, add ``presentme=true`` to the URL: http://localhost:8000/template.html?presentme=true
+
+To disable presenter mode, hit
+http://localhost:8000/template.html?presentme=false
+
+Presenter mode is sticky, so refreshing the page will persist your
+settings.
