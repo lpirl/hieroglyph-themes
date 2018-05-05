@@ -54,6 +54,8 @@ URL: https://code.google.com/p/io-2012-slides
 
 {%- macro css() %}
   <link rel="stylesheet" media="all"
+        href="{{ pathto('_static/theme/css/normalize.css', 1) }}">
+  <link rel="stylesheet" media="all"
         href="{{ pathto('_static/theme/css/default.css', 1) }}">
   <link rel="stylesheet" media="all"
         href="{{ pathto('_static/theme/css/hieroglyph.css', 1) }}">
@@ -65,7 +67,7 @@ URL: https://code.google.com/p/io-2012-slides
   <link rel="stylesheet" href="{{ pathto('_static/' + theme_custom_css, 1) }}"
         type="text/css" />
   {% endif %}
-  
+
   {%- for cssfile in css_files %}
   <link rel="stylesheet" href="{{ pathto(cssfile, 1) }}" type="text/css" />
   {%- endfor %}
