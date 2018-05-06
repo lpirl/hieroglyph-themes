@@ -82,11 +82,20 @@ slides > slide.next {
   left: 151%;
 }
 
+div.slide-footer,
 slides > slide:not(.title-slide)::after {
   position: absolute;
   bottom: .25em;
-  right: .25em;
   font-size: .4em;
+}
+
+slides > slide:not(.title-slide)::after {
+  right: .25em;
+}
+
+div.slide-footer {
+  width: 100%;
+  text-align: center;
 }
 
 slides > slide > hgroup + article {

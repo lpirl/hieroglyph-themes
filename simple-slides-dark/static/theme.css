@@ -42,6 +42,7 @@ body {
   transition: all .4s ease .1s;
 }
 
+div.slide-footer,
 slides > slide:not(.title-slide)::after {
   color: #757575;
 
