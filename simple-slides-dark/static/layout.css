@@ -98,14 +98,6 @@ div.slide-footer {
   text-align: center;
 }
 
-slides > slide > hgroup + article {
-  margin-top: 1em;
-}
-
-slides > slide > hgroup + article p {
-  margin-bottom: 1em;
-}
-
 slides > slide > article:only-child {
   height: 100%;
 }
