@@ -106,6 +106,13 @@ slides > slide > article:only-child > iframe {
   height: 98%;
 }
 
+.largest    {font-size: 3.0em;}
+.larger     {font-size: 2.0em;}
+.large      {font-size: 1.5em;}
+.small      {font-size: 0.8em;}
+.smaller    {font-size: 0.6em;}
+.smallest   {font-size: 0.4em;}
+
 h1, h2, h3 {
   font-weight: bold;
   letter-spacing: -.02em;
