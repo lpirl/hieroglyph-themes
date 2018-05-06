@@ -307,10 +307,6 @@ SlideDeck.prototype.loadConfig_ = function(config) {
     this.addFavIcon_(settings.favIcon);
   }
 
-  if (settings.analytics) {
-    this.loadAnalytics_();
-  }
-
   if (settings.fonts) {
     this.addFonts_(settings.fonts);
   }
@@ -845,19 +841,4 @@ SlideDeck.prototype.loadTheme_ = function(theme) {
     }
     document.querySelector('head').appendChild(style);
   }
-};
-
-/**
- * @private
- */
-SlideDeck.prototype.loadAnalytics_ = function() {
-  var _gaq = window['_gaq'] || [];
-  _gaq.push(['_setAccount', this.config_.settings.analytics]);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
 };
