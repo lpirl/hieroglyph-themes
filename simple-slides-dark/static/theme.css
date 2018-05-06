@@ -28,9 +28,6 @@ body {
   color: white;
 
   font-family: Ubuntu, sans-serif;
-
-  /* A default animation for everything that is being modified: */
-  transition: all 0.25s ease-out;
 }
 
 ::selection {
@@ -39,11 +36,11 @@ body {
   text-shadow: none;
 }
 
-
-slides > slide {
-  border: 1px solid red; /* tmp */
+* {
+  /* The delay of .1s is a hack to delay the animation to run after
+  possible DOM changes (for smoothness). */
+  transition: all .4s ease .1s;
 }
-
 
 slides > slide:not(.title-slide)::after {
   color: #757575;
