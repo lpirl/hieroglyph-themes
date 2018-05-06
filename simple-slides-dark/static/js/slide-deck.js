@@ -179,12 +179,8 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
 
   switch (e.keyCode) {
     case 13: // Enter
-      if (document.body.classList.contains('overview')) {
-        this.toggleOverview();
-      }
-      break;
-
     case 39: // right arrow
+    case 40: // down arrow
     case 32: // space
     case 34: // PgDn
       this.nextSlide();
@@ -192,18 +188,9 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       break;
 
     case 37: // left arrow
+    case 38: // up arrow
     case 8: // Backspace
     case 33: // PgUp
-      this.prevSlide();
-      e.preventDefault();
-      break;
-
-    case 40: // down arrow
-      this.nextSlide();
-      e.preventDefault();
-      break;
-
-    case 38: // up arrow
       this.prevSlide();
       e.preventDefault();
       break;
@@ -249,13 +236,6 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
         } else {
           document.cancelFullScreen();
         }
-      }
-      break;
-
-    case 87: // W: Toggle widescreen
-      // Only respect 'w' on body. Don't want to capture keys from an <input>.
-      if (e.target == document.body && !(e.shiftKey && e.metaKey)) {
-        this.container.classList.toggle('layout-widescreen');
       }
       break;
   }
