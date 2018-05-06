@@ -11,10 +11,6 @@ var SLIDE_CONFIG = {
     enableSlideAreas: {{ theme_enable_slide_areas }}, // Default: true. False turns off the click areas on either slide of the slides.
     enableTouch: {{ theme_enable_touch }}, // Default: true. If touch support should enabled. Note: the device must support touch.
     favIcon: {{ theme_favicon }},
-    fonts: [
-      'Open Sans:regular,semibold,italic,italicsemibold',
-      'Source Code Pro'
-    ],
     //theme: ['mytheme'], // Add your own custom themes or styles in /theme/css. Leave off the .css extension.
   },
 

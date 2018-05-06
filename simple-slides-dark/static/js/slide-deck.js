@@ -307,10 +307,6 @@ SlideDeck.prototype.loadConfig_ = function(config) {
     this.addFavIcon_(settings.favIcon);
   }
 
-  if (settings.fonts) {
-    this.addFonts_(settings.fonts);
-  }
-
   // Builds. Default to on.
   if (!!!('useBuilds' in settings) || settings.useBuilds) {
     this.makeBuildLists_();
@@ -415,18 +411,6 @@ SlideDeck.prototype.loadConfig_ = function(config) {
       }
     };
   }
-};
-
-/**
- * @private
- * @param {Array.<string>} fonts
- */
-SlideDeck.prototype.addFonts_ = function(fonts) {
-  var el = document.createElement('link');
-  el.rel = 'stylesheet';
-  el.href = ('https:' == document.location.protocol ? 'https' : 'http') +
-      '://fonts.googleapis.com/css?family=' + fonts.join('|') + '&v2';
-  document.querySelector('head').appendChild(el);
 };
 
 /**
