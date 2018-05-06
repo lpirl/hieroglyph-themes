@@ -1,6 +1,7 @@
 /**
  * @authors Luke Mahe
  * @authors Eric Bidelman
+ * @authors Lukas Pirl
  * @fileoverview TODO
  */
 document.cancelFullScreen = document.webkitCancelFullScreen ||
@@ -100,20 +101,14 @@ SlideDeck.prototype.loadSlide = function(slideNo) {
  * @private
  */
 SlideDeck.prototype.onDomLoaded_ = function(e) {
-  document.body.classList.add('loaded'); // Add loaded class for templates to use.
 
-  this.slides = this.container.querySelectorAll('slide:not([hidden]):not(.hidden):not(.backdrop)');
+  this.slides = this.container.querySelectorAll(
+    'slide:not([hidden]):not(.hidden)'
+  );
 
-  // If we're on a smartphone, apply special sauce.
-  if (Modernizr.mq('only screen and (max-device-width: 480px)')) {
-    // var style = document.createElement('link');
-    // style.rel = 'stylesheet';
-    // style.type = 'text/css';
-    // style.href = this.CSS_DIR_ + 'phone.css';
-    // document.querySelector('head').appendChild(style);
-
-    // No need for widescreen layout on a phone.
-    this.container.classList.remove('layout-widescreen');
+  // initially zoom all slides to window size
+  for (var i = 0, slide; slide = this.slides[i]; i++) {
+    this.resizeSlide_(slide);
   }
 
   this.loadConfig_(SLIDE_CONFIG);
@@ -139,16 +134,13 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
 
   // Note: this needs to come after addEventListeners_(), which adds a
   // 'keydown' listener that this controller relies on.
+  this.controller = new SlideController(this);
 
-  // Modernizr.touch isn't a sufficient check for devices that support both
-  // touch and mouse. Create the controller in all cases.
-  // // Also, no need to set this up if we're on mobile.
-  // if (!Modernizr.touch) {
-    this.controller = new SlideController(this);
-    if (this.controller.isPopup) {
-      document.body.classList.add('popup');
-    }
-  //}
+  if (this.controller.isPopup) {
+    document.body.classList.add('popup');
+  }
+
+  document.body.classList.add('loaded');
 };
 
 /**
@@ -157,35 +149,7 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
 SlideDeck.prototype.addEventListeners_ = function() {
   document.addEventListener('keydown', this.onBodyKeyDown_.bind(this), false);
   window.addEventListener('popstate', this.onPopState_.bind(this), false);
-
-  // var transEndEventNames = {
-  //   'WebkitTransition': 'webkitTransitionEnd',
-  //   'MozTransition': 'transitionend',
-  //   'OTransition': 'oTransitionEnd',
-  //   'msTransition': 'MSTransitionEnd',
-  //   'transition': 'transitionend'
-  // };
-  //
-  // // Find the correct transitionEnd vendor prefix.
-  // window.transEndEventName = transEndEventNames[
-  //     Modernizr.prefixed('transition')];
-  //
-  // // When slides are done transitioning, kickoff loading iframes.
-  // // Note: we're only looking at a single transition (on the slide). This
-  // // doesn't include autobuilds the slides may have. Also, if the slide
-  // // transitions on multiple properties (e.g. not just 'all'), this doesn't
-  // // handle that case.
-  // this.container.addEventListener(transEndEventName, function(e) {
-  //     this.enableSlideFrames_(this.curSlide_);
-  // }.bind(this), false);
-
-  // document.addEventListener('slideenter', function(e) {
-  //   var slide = e.target;
-  //   window.setTimeout(function() {
-  //     this.enableSlideFrames_(e.slideNumber);
-  //     this.enableSlideFrames_(e.slideNumber + 1);
-  //   }.bind(this), 300);
-  // }.bind(this), false);
+  window.addEventListener('resize', this.onWindowResize_.bind(this), false);
 };
 
 /**
@@ -296,6 +260,33 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       break;
   }
 };
+
+/**
+ * @param {Slide} slide
+ */
+SlideDeck.prototype.resizeSlide_ = function(slide) {
+
+  // do not resize slides in controller view
+  if (this.controller && this.controller.isPopup) return;
+
+  var factor = 1 / Math.max(
+        slide.clientWidth / window.innerWidth,
+        slide.clientHeight / window.innerHeight
+      );
+  slide.style.transform = 'scale(' + factor + ')';
+}
+
+/**
+ * @param {Event} event
+ */
+SlideDeck.prototype.onWindowResize_ = function(event) {
+  // let's resize the current slide first
+  this.resizeSlide_(this.slides[this.curSlide_]);
+  for (var i = 0, slide; slide = this.slides[i]; i++) {
+    if(i == this.curSlide_) continue;
+    this.resizeSlide_(slide);
+  }
+}
 
 /**
  *
