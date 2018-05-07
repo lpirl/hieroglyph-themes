@@ -1,5 +1,4 @@
-.. warning::
-  This is work in progress!
+**This is work in progress.**
 
 A repository for `hieroglyph <http://hieroglyph.io>`__ themes.
 
