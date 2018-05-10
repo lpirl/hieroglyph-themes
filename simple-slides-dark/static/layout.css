@@ -1,8 +1,15 @@
 /**
- * styles that define positions and sizes
+ * This file contains definitions which define positions, sizes, margins
+ * and alike.
+ *
+ * Definitions that you might use in your reStructuredText document
+ * can be found at the end of this document.
+ *
+ * If you want to modify the colors, animations and other eye-candy,
+ * please refer to ``theme.css``.
  *
  * Font sizes for headlines: 3em, 2em, 1.5em
- * Font sizes for content: 1.2em, 1em, .8em, .6em, .4em
+ * Font sizes for content: 1em, .8em, .6em, .4em
  */
 
 html {
@@ -32,7 +39,8 @@ body.loaded {
   opacity: 1 !important;
 }
 
-input, button {
+input,
+button {
   vertical-align: middle;
 }
 
@@ -60,7 +68,7 @@ slides > slide {
   margin-left: -20rem;
   margin-top: -11.25rem;
 
-  padding: .5rem 1rem;
+  padding: .5rem .5rem;
   overflow: hidden;
   box-sizing: border-box;
 
@@ -82,6 +90,9 @@ slides > slide.next {
   left: 151%;
 }
 
+/* [1] TODO: ``slide:…:after`` probably not needed anymore once we use
+ * the slide numbering provided by Hieroglyph instead of the slide
+ * numbering provided by JavaScript. */
 div.slide-footer,
 slides > slide:not(.title-slide)::after {
   position: absolute;
@@ -89,6 +100,7 @@ slides > slide:not(.title-slide)::after {
   font-size: .4em;
 }
 
+/* See [1] above. */
 slides > slide:not(.title-slide)::after {
   right: .25em;
 }
@@ -106,13 +118,6 @@ slides > slide > article:only-child > iframe {
   height: 98%;
 }
 
-.largest    {font-size: 3.0em;}
-.larger     {font-size: 2.0em;}
-.large      {font-size: 1.5em;}
-.small      {font-size: 0.8em;}
-.smaller    {font-size: 0.6em;}
-.smallest   {font-size: 0.4em;}
-
 h1, h2, h3 {
   font-weight: bold;
   letter-spacing: -.02em;
@@ -124,6 +129,7 @@ h1, h2, h3 {
 h1 {
   font-size: 3em;
   margin-top: 1em;
+  text-align: right;
   line-height: 2;
 }
 
@@ -135,10 +141,20 @@ h3 {
   font-size: 1.5em;
 }
 
-pre, code {
-  font-family: 'Source Code Pro', 'Courier New', monospace;
-  font-size: .6em;
+span.pre,
+pre {
+  font-family: 'Courier New', monospace;
   letter-spacing: -.05em;
+}
+
+span.pre {
+  font-size: 1.1em;
+  padding-left: .1em;
+  padding-right: .1em;
+}
+
+pre {
+  font-size: .6em;
 }
 
 iframe {
@@ -149,6 +165,10 @@ iframe {
 
 dt {
   font-weight: bold;
+}
+
+em {
+  padding-right: .1em;
 }
 
 table {
@@ -166,17 +186,30 @@ table td, table th {
   padding: 1em 0.5em;
 }
 
+table th {
+  text-align: center;
+}
+
 q {
-  font-size: 1.2em;
+  font-size: 1.5em;
   line-height: 1.25em;
 }
 
-ul {
+ul, ol {
   margin: 0;
-  list-style-type: none;
 }
 
-li {
+ul {
+  list-style-type: none;
+  padding-left: 1em;
+}
+
+ol {
+  /* This makes ``ol``s nested in ``ul``s indent as expected. */
+  padding-left: 2em;
+}
+
+li, p.topic-title {
   line-height: 1.75em;
 }
 
@@ -210,48 +243,6 @@ q::after {
   font-size: 2em;
   position: absolute;
   margin-left: 0.1em;
-}
-
-slide.fill {
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-slide.fill img,
-slide.fill iframe {
-  position: absolute;
-  left: 0;
-  top: 0;
-  min-width: 100%;
-  min-height: 100%;
-  border: 0;
-  margin: 0;
-  z-index: -1;
-}
-
-img.centered {
-  margin: 0 auto;
-  display: block;
-}
-
-.build .to-build {
-  opacity: 0;
-}
-
-.build .build-fade {
-  opacity: 0.5;
-}
-
-.build .build-fade:hover {
-  opacity: 1.0;
-}
-
-.popup .next .build .to-build {
-  opacity: 1;
-}
-
-.popup .next .build .build-fade {
-  opacity: 1;
 }
 
 .note {
@@ -338,6 +329,10 @@ img.centered {
   right: 0;
 }
 
+.overview .slide-area {
+  display: none;
+}
+
 .overview.popup .note {
   display: none !important;
 }
@@ -363,6 +358,18 @@ img.centered {
 
 .overview .slide-area {
   display: none;
+}
+
+div.topic {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+p.topic-title {
+  font-size: 1em;
+  font-weight: normal;
+  margin: 0;
 }
 
 @media print {
@@ -399,4 +406,74 @@ img.centered {
   pre, code {
     font-family: monospace !important;
   }
+}
+
+/**********************************************************************/
+/* below, definitions you might use in your reStructuredText document */
+/*                                                                    */
+
+slide.fill {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+slide.fill img,
+slide.fill iframe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 100%;
+  min-height: 100%;
+  border: 0;
+  margin: 0;
+  z-index: -1;
+}
+
+.largest  {font-size: 3.0rem;}
+.larger   {font-size: 2.0rem;}
+.large    {font-size: 1.5rem;}
+.small    {font-size: 0.8rem;}
+.smaller  {font-size: 0.6rem;}
+.smallest {font-size: 0.4rem;}
+
+.strike-through {
+  text-decoration: line-through;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.ref,
+.top,
+.left,
+.right,
+.bottom {
+  display: inline-block;
+  position: absolute;
+  padding: .66rem .5rem;
+}
+
+.top {
+  top: 0;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.bottom {
+  bottom: 0rem;
+}
+
+/* class ``reference`` already used by reStructuredText, unfortunately */
+.ref {
+  font-size: .6rem;
+  bottom: 0rem;
+  right: 0rem;
+  text-align: right;
 }
