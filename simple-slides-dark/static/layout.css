@@ -373,17 +373,29 @@ p.topic-title {
 }
 
 @media print {
+
+  @page {
+    size: size: A4 landscape;
+    border: 0;
+    padding: 0;
+  }
+
+  html {
+    /* a good value, so that a slide fits on a landscape A4 page: */
+    font-size: 10mm;
+  }
+
+  /* we want to fit 4 on a page */
   slides slide {
-    display: block !important;
+    display: inline-block !important;
     position: relative;
-    width: 100%;
-    height: 100%;
-    page-break-after: always;
     top: auto !important;
     left: auto !important;
-    margin-top: 0 !important;
-    margin-left: 0 !important;
+    margin: 1rem auto !important;
     opacity: 1 !important;
+    page-break-after: always;
+    page-break-inside: avoid;
+    transform: none !important;
   }
 
   slides slide .build > * {
