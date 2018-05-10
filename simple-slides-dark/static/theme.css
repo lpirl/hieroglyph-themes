@@ -4,6 +4,9 @@
  *
  * The definitions that make the overall placement of things can be found
  * in ``layout.css``.
+ *
+ * Definitions that you might use in your reStructuredText document
+ * can be found at the end of this document.
  */
 
 /* The dark color scheme uses the following colors:
@@ -129,6 +132,10 @@ table tr:nth-child(odd) {
   opacity: .5;
 }
 
+/**********************************************************************/
+/* below, definitions you might use in your reStructuredText document */
+/*                                                                    */
+
 /* Assuming text colors are more often used than background colors, so
  * they have no suffix in order to be quicker to type */
 .black                  {color:             black;}
@@ -165,6 +172,10 @@ table tr:nth-child(odd) {
 .invert {
   filter: invert(1);
 }
+
+/*                                                                    */
+/* above, definitions you might use in your reStructuredText document */
+/**********************************************************************/
 
 @media print {
 
