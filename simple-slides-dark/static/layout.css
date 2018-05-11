@@ -398,13 +398,8 @@ p.topic-title {
     transform: none !important;
   }
 
-  slides slide .build > * {
-    transition: none;
-  }
-
-  slides slide .build .to-build,
-  slides slide .build .build-fade {
-    opacity: 1;
+  slides slide .build * {
+    opacity: 1 !important;
   }
 
   slides slide[hidden] {
