@@ -34,7 +34,13 @@ SlideController.prototype.setupDone = function() {
   }
 
   if (presentMe !== null) {
-    localStorage.ENABLE_PRESENTOR_MODE = presentMe;
+    try {
+      localStorage.ENABLE_PRESENTOR_MODE = presentMe;
+    } catch (e) {
+      if (!(e instanceof DOMException)) {
+        throw e;
+      }
+    }
     // TODO: use window.history.pushState to update URL instead of the redirect.
     if (window.history.replaceState) {
       window.history.replaceState({}, '', location.pathname);
@@ -44,7 +50,14 @@ SlideController.prototype.setupDone = function() {
     }
   }
 
-  var enablePresenterMode = localStorage.getItem('ENABLE_PRESENTOR_MODE');
+  var enablePresenterMode = false;
+  try {
+    enablePresenterMode = localStorage.getItem('ENABLE_PRESENTOR_MODE');
+  } catch (e) {
+    if (!(e instanceof DOMException)) {
+      throw e;
+    }
+  }
   if (enablePresenterMode && JSON.parse(enablePresenterMode)) {
     // Only open popup from main deck. Don't want recursive popup opening!
     if (!this.isPopup) {
@@ -106,4 +119,3 @@ SlideController.prototype.sendMsg = function(msg) {
 window.SlideController = SlideController;
 
 })(window);
-
