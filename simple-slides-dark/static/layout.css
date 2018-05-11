@@ -94,14 +94,13 @@ slides > slide.next {
  * the slide numbering provided by Hieroglyph instead of the slide
  * numbering provided by JavaScript. */
 div.slide-footer,
-slides > slide:not(.title-slide)::after {
+div.slide-no {
   position: absolute;
   bottom: .25em;
   font-size: .4em;
 }
 
-/* See [1] above. */
-slides > slide:not(.title-slide)::after {
+div.slide-no {
   right: .25em;
 }
 

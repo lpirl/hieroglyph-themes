@@ -49,11 +49,8 @@ body {
 }
 
 div.slide-footer,
-slides > slide:not(.title-slide)::after {
+div.slide-no {
   color: #757575;
-
-  /* there is also ``attr(data-total-slides)`` */
-  content: attr(data-slide-num);
 }
 
 a {

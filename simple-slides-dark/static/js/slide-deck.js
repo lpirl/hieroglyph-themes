@@ -91,10 +91,8 @@ SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
  * @param {number} slideNo
  */
 SlideDeck.prototype.loadSlide = function(slideNo) {
-  if (slideNo) {
-    this.curSlide_ = slideNo - 1;
-    this.updateSlides_();
-  }
+  this.curSlide_ = slideNo;
+  this.updateSlides_();
 };
 
 /**
@@ -118,12 +116,9 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
   // Add slide numbers and total slide count metadata to each slide.
   var that = this;
   for (var i = 0, slide; slide = this.slides[i]; ++i) {
-    slide.dataset.slideNum = i + 1;
-    slide.dataset.totalSlides = this.slides.length;
-
     slide.addEventListener('click', function(e) {
       if (document.body.classList.contains('overview')) {
-        that.loadSlide(this.dataset.slideNum);
+        that.loadSlide(i);
         e.preventDefault();
         window.setTimeout(function() {
           that.toggleOverview();
