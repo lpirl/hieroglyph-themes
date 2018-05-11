@@ -169,7 +169,10 @@ table tr:nth-child(odd) {
   color: #757575;
 }
 
-.invert {
+.invert,
+/* also invert colors of Graphviz images */
+object[data^="_images/graphviz-"],
+img[src^="_images/graphviz-"] {
   filter: invert(1);
 }
 
@@ -184,6 +187,8 @@ table tr:nth-child(odd) {
     color: black;
   }
 
+  img[src^="_images/graphviz-"],
+  object[data^="_images/graphviz"],
   .invert {
     filter: invert(0);
   }
