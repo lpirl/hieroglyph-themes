@@ -24,10 +24,13 @@ html {
 }
 
 body {
-  margin: 0;
-  padding: 0;
+  position: absolute;
   height: 100%;
   width: 100%;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
 }
 
@@ -49,15 +52,7 @@ slides > slide[hidden] {
 }
 
 slides {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-slides > slide {
-  opacity: 0;
+  display: block;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -67,27 +62,36 @@ slides > slide {
   height: 22.5rem;
   margin-left: -20rem;
   margin-top: -11.25rem;
+  overflow: visible;
+}
+
+slides > slide {
+  display: inline-block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 
   padding: .5rem .5rem;
   overflow: hidden;
   box-sizing: border-box;
-
   z-index: -10;
+
+  opacity: 0;
 }
 
 slides > slide.current {
-  opacity: 1;
   z-index: 10;
+  opacity: 1;
 }
 
 slides > slide.far-past,
 slides > slide.past {
-  left: -51%;
+  left: -101%;
 }
 
 slides > slide.far-next,
 slides > slide.next {
-  left: 151%;
+  left: 101%;
 }
 
 /* [1] TODO: ``slide:…:after`` probably not needed anymore once we use
@@ -268,21 +272,33 @@ q::after {
 
 /* "with-nodes" is the class of the body of the presenter view */
 
+.with-notes.popup slides {
+  top: -25%;
+  margin-top: 0;
+}
+
 .with-notes.popup slide {
   overflow: visible;
   pointer-events: none;
+  border: 1px solid white;
 }
 
-.with-notes.popup slide {
-  /* 16:9 aspect ratio */
-  top: 0;
-  height: 60%;
-  width: 33.75%;
+.with-notes.popup slide.current {
+  opacity: 1 !important;
+  transform: scale(.5);
+  left: -24%;
 }
 
 .with-notes.popup slide.next {
-  transform: scale(0.35);
-  opacity: 1 !important;
+  opacity: .8 !important;
+  transform: scale(.4);
+  left: 22%;
+}
+
+.with-notes.popup slide.far-next {
+  opacity: .6 !important;
+  transform: scale(.3);
+  left: 58%;
 }
 
 .with-notes.popup slide.next .note {

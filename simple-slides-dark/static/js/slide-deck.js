@@ -104,14 +104,12 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
     'slide:not([hidden]):not(.hidden)'
   );
 
-  // initially zoom all slides to window size
-  for (var i = 0, slide; slide = this.slides[i]; i++) {
-    this.resizeSlide_(slide);
-  }
-
   this.loadConfig_(SLIDE_CONFIG);
   this.addEventListeners_();
   this.updateSlides_();
+
+  // initially zoom slides to window size
+  window.dispatchEvent(new Event('resize'));
 
   // Add slide numbers and total slide count metadata to each slide.
   var that = this;
@@ -237,30 +235,14 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
 };
 
 /**
- * @param {Slide} slide
- */
-SlideDeck.prototype.resizeSlide_ = function(slide) {
-
-  // do not resize slides in controller view
-  if (this.controller && this.controller.isPopup) return;
-
-  var factor = 1 / Math.max(
-        slide.clientWidth / window.innerWidth,
-        slide.clientHeight / window.innerHeight
-      );
-  slide.style.transform = 'scale(' + factor + ')';
-}
-
-/**
  * @param {Event} event
  */
 SlideDeck.prototype.onWindowResize_ = function(event) {
-  // let's resize the current slide first
-  this.resizeSlide_(this.slides[this.curSlide_]);
-  for (var i = 0, slide; slide = this.slides[i]; i++) {
-    if(i == this.curSlide_) continue;
-    this.resizeSlide_(slide);
-  }
+  var factor = 1 / Math.max(
+        this.container.clientWidth / window.innerWidth,
+        this.container.clientHeight / window.innerHeight
+      );
+  this.container.style.transform = 'scale(' + factor + ')';
 }
 
 /**
