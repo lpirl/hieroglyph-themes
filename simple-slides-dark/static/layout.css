@@ -66,32 +66,31 @@ slides {
 }
 
 slides > slide {
-  display: inline-block;
   position: absolute;
+  display: none;
+
   height: 100%;
   width: 100%;
 
   padding: .5rem .5rem;
   overflow: hidden;
   box-sizing: border-box;
-  z-index: -10;
-
-  opacity: 0;
 }
 
+slides > slide.past,
+slides > slide.next,
 slides > slide.current {
-  z-index: 10;
-  opacity: 1;
+  display: block;
 }
 
 slides > slide.far-past,
 slides > slide.past {
-  left: -101%;
+  transform: translateX(-101%);
 }
 
 slides > slide.far-next,
 slides > slide.next {
-  left: 101%;
+  transform: translateX(101%);
 }
 
 /* [1] TODO: ``slide:…:after`` probably not needed anymore once we use
@@ -283,22 +282,24 @@ q::after {
   border: 1px solid white;
 }
 
+.with-notes.popup slide.past {
+  display: block;
+  transform: translateX(-101%) scale(.5);
+}
+
 .with-notes.popup slide.current {
-  opacity: 1 !important;
-  transform: scale(.5);
-  left: -24%;
+  transform: translateX(-24%) scale(.5);
 }
 
 .with-notes.popup slide.next {
-  opacity: .8 !important;
-  transform: scale(.4);
-  left: 22%;
+  transform: translateX(22%) scale(.4);
+  opacity: .8;
 }
 
 .with-notes.popup slide.far-next {
-  opacity: .6 !important;
-  transform: scale(.3);
-  left: 58%;
+  display: block;
+  transform: translate(58%, 0) scale(.3);
+  opacity: .6;
 }
 
 .with-notes.popup slide.next .note {
