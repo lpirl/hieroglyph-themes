@@ -325,27 +325,33 @@ q::after {
   pointer-events: auto;
 }
 
-.overview .note {
-  display: none !important;
+body.overview {
+  overflow: auto;
 }
 
 .overview slides slide {
-  display: block;
+  display: inline-block;
+  position: relative;
+  transform: none;
+  height: 30%;
+  width: 30%;
+  font-size: .3em;
+  opacity: .8;
   cursor: pointer;
-  opacity: .75;
   pointer-events: auto !important;
-}
-
-.overview slides slide.far-past,
-.overview slides slide.past,
-.overview slides slide.next,
-.overview slides slide.far-next {
-  opacity: 0.5;
-  display: block;
 }
 
 .overview slides slide.current {
   opacity: 1;
+}
+
+.overview slides slide .build * {
+  opacity: 1;
+}
+
+
+.overview .note {
+  display: none !important;
 }
 
 div.topic {
@@ -420,12 +426,12 @@ slide.fill iframe {
   z-index: -1;
 }
 
-.largest  {font-size: 3.0rem;}
-.larger   {font-size: 2.0rem;}
-.large    {font-size: 1.5rem;}
-.small    {font-size: 0.8rem;}
-.smaller  {font-size: 0.6rem;}
-.smallest {font-size: 0.4rem;}
+.largest  {font-size: 3.0em;}
+.larger   {font-size: 2.0em;}
+.large    {font-size: 1.5em;}
+.small    {font-size: 0.8em;}
+.smaller  {font-size: 0.6em;}
+.smallest {font-size: 0.4em;}
 
 .strike-through {
   text-decoration: line-through;
@@ -442,7 +448,7 @@ slide.fill iframe {
 .bottom {
   display: inline-block;
   position: absolute;
-  padding: .66rem .5rem;
+  padding: .66em .5em;
 }
 
 .top {
@@ -458,13 +464,13 @@ slide.fill iframe {
 }
 
 .bottom {
-  bottom: 0rem;
+  bottom: .25em;
 }
 
 /* class ``reference`` already used by reStructuredText, unfortunately */
 .ref {
-  font-size: .6rem;
-  bottom: 0rem;
-  right: 0rem;
+  font-size: .6em;
+  bottom: 0em;
+  right: 0em;
   text-align: right;
 }

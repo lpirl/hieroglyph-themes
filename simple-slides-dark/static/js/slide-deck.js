@@ -108,18 +108,17 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
   this.addEventListeners_();
   this.updateSlides_();
 
-  // Add slide numbers and total slide count metadata to each slide.
   var that = this;
   for (var i = 0, slide; slide = this.slides[i]; ++i) {
-    slide.addEventListener('click', function(e) {
-      if (document.body.classList.contains('overview')) {
-        that.loadSlide(i);
-        e.preventDefault();
-        window.setTimeout(function() {
-          that.toggleOverview();
-        }, 500);
-      }
-    }, false);
+    (function(i) {
+      slide.addEventListener('click', function(e) {
+        if (document.body.classList.contains('overview')) {
+          e.preventDefault();
+          that.loadSlide(i);
+          document.body.classList.toggle('overview');
+        }
+      }, false);
+    })(i);
   }
 
   // Note: this needs to come after addEventListeners_(), which adds a
@@ -131,10 +130,10 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
     document.body.classList.add('with-notes');
   }
 
-  document.body.classList.add('loaded');
 
   // initially zoom slides to window size
   window.dispatchEvent(new Event('resize'));
+  document.body.classList.add('loaded');
 };
 
 /**
@@ -213,7 +212,7 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       break;
 
     case 79: // O: Toggle overview
-      this.toggleOverview();
+      document.body.classList.toggle('overview');
       break;
 
     case 78: // N
@@ -227,9 +226,7 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
     case 27: // ESC: hide notes, close overview
       document.body.classList.remove('with-notes');
 
-      if (document.body.classList.contains('overview')) {
-        this.toggleOverview();
-      }
+      document.body.classList.remove('overview');
       break;
 
     case 70: // F: Toggle fullscreen
@@ -259,27 +256,6 @@ SlideDeck.prototype.onWindowResize_ = function(event) {
       );
   this.container.style.transform = 'scale(' + factor + ')';
 }
-
-/**
- *
- */
-SlideDeck.prototype.focusOverview_ = function() {
-  var overview = document.body.classList.contains('overview');
-
-  for (var i = 0, slide; slide = this.slides[i]; i++) {
-    slide.style[Modernizr.prefixed('transform')] = overview ?
-        'translateZ(-2500px) translate(' + (( i - this.curSlide_ ) * 105) +
-                                       '%, 0%)' : '';
-  }
-};
-
-/**
- */
-SlideDeck.prototype.toggleOverview = function() {
-  document.body.classList.toggle('overview');
-
-  this.focusOverview_();
-};
 
 
 /**
@@ -490,21 +466,31 @@ SlideDeck.prototype.updateSlides_ = function(opt_dontPush) {
     switch (i) {
       case curSlide - 2:
         this.updateSlideClass_(i, 'far-past');
+        this.disableSlideFrames_(i);
         break;
       case curSlide - 1:
         this.updateSlideClass_(i, 'past');
+        // No way to tell when all slide transitions + auto builds are done.
+        // Give ourselves a good buffer to preload the next slide's iframes.
+        window.setTimeout(this.enableSlideFrames_.bind(this, i), 1000);
         break;
       case curSlide:
         this.updateSlideClass_(i, 'current');
+        this.enableSlideFrames_(i);
         break;
       case curSlide + 1:
         this.updateSlideClass_(i, 'next');
+        // No way to tell when all slide transitions + auto builds are done.
+        // Give ourselves a good buffer to preload the next slide's iframes.
+        window.setTimeout(this.enableSlideFrames_.bind(this, i), 1000);
         break;
       case curSlide + 2:
         this.updateSlideClass_(i, 'far-next');
+        this.disableSlideFrames_(i);
         break;
       default:
         this.updateSlideClass_(i);
+        this.disableSlideFrames_(i);
         break;
     }
   };
@@ -512,34 +498,15 @@ SlideDeck.prototype.updateSlides_ = function(opt_dontPush) {
   this.triggerSlideEvent('slideleave', this.prevSlide_);
   this.triggerSlideEvent('slideenter', curSlide);
 
-// window.setTimeout(this.disableSlideFrames_.bind(this, curSlide - 2), 301);
-//
-// this.enableSlideFrames_(curSlide - 1); // Previous slide.
-// this.enableSlideFrames_(curSlide + 1); // Current slide.
-// this.enableSlideFrames_(curSlide + 2); // Next slide.
-
-   // Enable current slide's iframes (needed for page loat at current slide).
-   this.enableSlideFrames_(curSlide + 1);
-
-   // No way to tell when all slide transitions + auto builds are done.
-   // Give ourselves a good buffer to preload the next slide's iframes.
-   window.setTimeout(this.enableSlideFrames_.bind(this, curSlide + 2), 1000);
-
   this.updateHash_(dontPush);
-
-  if (document.body.classList.contains('overview')) {
-    this.focusOverview_();
-    return;
-  }
-
 };
 
 /**
  * @private
  * @param {number} slideNo
  */
-SlideDeck.prototype.enableSlideFrames_ = function(slideNo) {
-  var el = this.slides[slideNo - 1];
+SlideDeck.prototype.enableSlideFrames_ = function(slideIndex) {
+  var el = this.slides[slideIndex];
   if (!el) {
     return;
   }
@@ -565,8 +532,8 @@ SlideDeck.prototype.enableFrame_ = function(frame) {
  * @private
  * @param {number} slideNo
  */
-SlideDeck.prototype.disableSlideFrames_ = function(slideNo) {
-  var el = this.slides[slideNo - 1];
+SlideDeck.prototype.disableSlideFrames_ = function(slideIndex) {
+  var el = this.slides[slideIndex];
   if (!el) {
     return;
   }
