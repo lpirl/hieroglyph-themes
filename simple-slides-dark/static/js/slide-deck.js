@@ -266,6 +266,22 @@ SlideDeck.prototype.toggleOverview = function() {
   this.focusOverview_();
 };
 
+
+/**
+ * @param {string} The string to convert to Boolean.
+ * @private
+ */
+SlideDeck.prototype.configValueToBool_ = function(value) {
+  switch(value.trim().toLowerCase()){
+    case "1":
+    case "on":
+    case "yes":
+    case "true":
+      return true;
+    return false;
+  }
+}
+
 /**
  * @private
  */
@@ -278,8 +294,22 @@ SlideDeck.prototype.loadConfig_ = function(config) {
 
   var settings = this.config_.settings;
 
-  // Builds. Default to on.
-  if (!!!('useBuilds' in settings) || settings.useBuilds) {
+  // Store data from  tags
+  // ``<meta name="hieroglyph-config-{k} content="{v}">`` into
+  // ``settingsFromMetaTags[k] = v``.
+  var settingsFromMetaTags = {},
+      configMetaTags = document.querySelectorAll(
+        'meta[name^="hieroglyph-config-"]'
+      );
+  for (var i = 0, item; item = configMetaTags[i]; i++) {
+    settingsFromMetaTags[
+      item.getAttribute("name").replace("hieroglyph-config-", "")
+    ] = item.getAttribute("content");
+  }
+
+  // If to use builds. Defaults to yes.
+  if (settingsFromMetaTags["use-builds"] == undefined ||
+      this.configValueToBool_(settingsFromMetaTags["use-builds"])) {
     this.makeBuildLists_();
   }
 

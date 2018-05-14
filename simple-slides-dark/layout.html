@@ -80,8 +80,11 @@ URL: https://code.google.com/p/io-2012-slides
   <!--<meta name="viewport" content="initial-scale=0.4">-->
   <meta name="apple-mobile-web-app-capable" content="yes">
 
+  {# configuration option we hand from ``theme.conf`` to JavaScript #}
   <meta name="hieroglyph-title" data-config-title>
   <meta name="hieroglyph-subtitle" data-config-subtitle>
+  <meta name="hieroglyph-config-use-builds"
+        content="{{ theme_use_builds }}">
 
   {{ css() }}
   <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
