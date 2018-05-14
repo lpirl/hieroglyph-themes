@@ -326,7 +326,11 @@ q::after {
 }
 
 body.overview {
-  overflow: auto;
+  overflow-y: auto;
+}
+
+.overview slides {
+  transform-origin: center 0;
 }
 
 .overview slides slide {
