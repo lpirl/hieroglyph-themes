@@ -108,9 +108,6 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
   this.addEventListeners_();
   this.updateSlides_();
 
-  // initially zoom slides to window size
-  window.dispatchEvent(new Event('resize'));
-
   // Add slide numbers and total slide count metadata to each slide.
   var that = this;
   for (var i = 0, slide; slide = this.slides[i]; ++i) {
@@ -131,9 +128,13 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
 
   if (this.controller.isPopup) {
     document.body.classList.add('popup');
+    document.body.classList.add('with-notes');
   }
 
   document.body.classList.add('loaded');
+
+  // initially zoom slides to window size
+  window.dispatchEvent(new Event('resize'));
 };
 
 /**
