@@ -21,7 +21,7 @@ function SlideController() {
 SlideController.prototype.openPopup_= function() {
   console.assert(!this.isPopup);
   var opts = 'menubar=no,location=yes,resizable=yes,scrollbars=no,status=no';
-  this.popup = window.open(location.href, 'mywindow', opts);
+  this.popup = window.open(location.href, 'hieroglyph-presenter-view', opts);
 }
 
 SlideController.prototype.closePopup_= function() {
