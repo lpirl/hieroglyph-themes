@@ -32,7 +32,7 @@ O
   toggle overview (currently broken – needs CSS fixes)
 
 P
-  speaker notes in presenter view (currently broken – needs CSS fixes)
+  open the presenter view
 
 ESC
   hide notes, close overview

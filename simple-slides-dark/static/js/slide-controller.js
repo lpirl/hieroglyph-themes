@@ -20,6 +20,13 @@ function SlideController() {
 
 SlideController.PRESENTER_MODE_PARAM = 'presentme';
 
+SlideController.prototype.openPopup_= function() {
+  if (!this.isPopup) {
+    var opts = 'menubar=no,location=yes,resizable=yes,scrollbars=no,status=no';
+    this.popup = window.open(location.href, 'mywindow', opts);
+  }
+}
+
 SlideController.prototype.setupDone = function() {
   var params = location.search.substring(1).split('&').map(function(el) {
     return el.split('=');
@@ -59,22 +66,17 @@ SlideController.prototype.setupDone = function() {
     }
   }
   if (enablePresenterMode && JSON.parse(enablePresenterMode)) {
-    // Only open popup from main deck. Don't want recursive popup opening!
-    if (!this.isPopup) {
-      var opts = 'menubar=no,location=yes,resizable=yes,scrollbars=no,status=no';
-      this.popup = window.open(location.href, 'mywindow', opts);
-
-      // Loading in the popup? Trigger the hotkey for turning presenter mode on.
-      this.popup.addEventListener('load', function(e) {
-        var evt = this.popup.document.createEvent('Event');
-        evt.initEvent('keydown', true, true);
-        evt.keyCode = 'P'.charCodeAt(0);
-        this.popup.document.dispatchEvent(evt);
-        // this.popup.document.body.classList.add('with-notes');
-        // document.body.classList.add('popup');
-      }.bind(this), false);
-    }
+    this.openPopup_();
   }
+
+  var that = this;
+  document.addEventListener('keydown', function(e) {
+    switch (e.keyCode) {
+      case 80: // P
+        that.openPopup_();
+        break;
+    }
+  }, true);
 
   return true;
 }
@@ -89,11 +91,6 @@ SlideController.prototype.onMessage_ = function(e) {
     alert('Someone tried to postMessage from an unknown origin');
     return;
   }
-
-  // if (e.source.location.hostname != 'localhost') {
-  //   alert('Someone tried to postMessage from an unknown origin');
-  //   return;
-  // }
 
   if ('keyCode' in data) {
     var evt = document.createEvent('Event');

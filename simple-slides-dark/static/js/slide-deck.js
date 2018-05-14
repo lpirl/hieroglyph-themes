@@ -215,21 +215,16 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       this.toggleOverview();
       break;
 
-    case 80: // P
-      if (this.controller && this.controller.isPopup) {
-        document.body.classList.toggle('with-notes');
-      } else if (this.controller && !this.controller.popup) {
-        document.body.classList.toggle('with-notes');
-      }
+    case 78: // N
+      document.body.classList.toggle('with-notes');
       break;
 
     case 82: // R
       // TODO: implement refresh on main slides when popup is refreshed.
       break;
 
-    case 27: // ESC: Hide notes and highlighting
+    case 27: // ESC: hide notes, close overview
       document.body.classList.remove('with-notes');
-      document.body.classList.remove('highlight-code');
 
       if (document.body.classList.contains('overview')) {
         this.toggleOverview();
