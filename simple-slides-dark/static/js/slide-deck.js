@@ -354,21 +354,6 @@ SlideDeck.prototype.loadConfig_ = function(config) {
     }
   }
 
-  /* Left/Right tap areas. Default to including. */
-  if (!!!('enableSlideAreas' in settings) || settings.enableSlideAreas) {
-    var el = document.createElement('div');
-    el.classList.add('slide-area');
-    el.id = 'prev-slide-area';
-    el.addEventListener('click', this.prevSlide.bind(this,undefined), false);
-    this.container.appendChild(el);
-
-    var el = document.createElement('div');
-    el.classList.add('slide-area');
-    el.id = 'next-slide-area';
-    el.addEventListener('click', this.nextSlide.bind(this,undefined), false);
-    this.container.appendChild(el);
-  }
-
   if (Modernizr.touch && (!!!('enableTouch' in settings) ||
       settings.enableTouch)) {
     var self = this;

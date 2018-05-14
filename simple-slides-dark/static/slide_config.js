@@ -8,7 +8,6 @@ var SLIDE_CONFIG = {
     //  date: '6/x/2013'
     //},
     useBuilds: true, // Default: true. False will turn off slide animation builds.
-    enableSlideAreas: true, // Default: true. False turns off the click areas on either slide of the slides.
     enableTouch: true, // Default: true. If touch support should enabled. Note: the device must support touch.
     //theme: ['mytheme'], // Add your own custom themes or styles in /theme/css. Leave off the .css extension.
   },

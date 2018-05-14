@@ -325,30 +325,6 @@ q::after {
   pointer-events: auto;
 }
 
-/* "slide-area" are clickable/tappable areas to move to/from the
- * previous/next slide */
-
-.slide-area {
-  z-index: 1000;
-  position: absolute;
-  top: 25%;
-  height: 50%;
-  width: 20%;
-  cursor: pointer;
-}
-
-#prev-slide-area {
-  left: 0;
-}
-
-#next-slide-area {
-  right: 0;
-}
-
-.overview .slide-area {
-  display: none;
-}
-
 .overview.popup .note {
   display: none !important;
 }
@@ -370,10 +346,6 @@ q::after {
 
 .overview slides slide.current {
   opacity: 1;
-}
-
-.overview .slide-area {
-  display: none;
 }
 
 div.topic {
@@ -420,10 +392,6 @@ p.topic-title {
 
   slides slide[hidden] {
     display: none !important;
-  }
-
-  .slide-area {
-    display: none;
   }
 
   pre, code {
