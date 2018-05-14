@@ -9,7 +9,6 @@ var SLIDE_CONFIG = {
     //},
     useBuilds: true, // Default: true. False will turn off slide animation builds.
     enableTouch: true, // Default: true. If touch support should enabled. Note: the device must support touch.
-    favIcon: {{ theme_favicon }},
   },
 
   // Author information

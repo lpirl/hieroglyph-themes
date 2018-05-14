@@ -278,10 +278,6 @@ SlideDeck.prototype.loadConfig_ = function(config) {
 
   var settings = this.config_.settings;
 
-  if (settings.favIcon) {
-    this.addFavIcon_(settings.favIcon);
-  }
-
   // Builds. Default to on.
   if (!!!('useBuilds' in settings) || settings.useBuilds) {
     this.makeBuildLists_();
@@ -747,17 +743,4 @@ SlideDeck.prototype.updateHash_ = function(dontPush) {
     window['_gaq'] && window['_gaq'].push(['_trackPageview',
                                           document.location.href]);
   }
-};
-
-
-/**
- * @private
- * @param {string} favIcon
- */
-SlideDeck.prototype.addFavIcon_ = function(favIcon) {
-  var el = document.createElement('link');
-  el.rel = 'icon';
-  el.type = 'image/png';
-  el.href = favIcon;
-  document.querySelector('head').appendChild(el);
 };
