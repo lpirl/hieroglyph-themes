@@ -295,8 +295,7 @@ SlideDeck.prototype.loadConfig_ = function(config) {
     document.querySelector('[data-config-subtitle]').innerHTML = settings.subtitle;
   }
 
-  if (Modernizr.touch && (!!!('enableTouch' in settings) ||
-      settings.enableTouch)) {
+  if (Modernizr.touch) {
     var self = this;
 
     // Note: this prevents mobile zoom in/out but prevents iOS from doing

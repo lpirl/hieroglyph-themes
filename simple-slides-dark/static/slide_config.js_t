@@ -8,6 +8,5 @@ var SLIDE_CONFIG = {
     //  date: '6/x/2013'
     //},
     useBuilds: true, // Default: true. False will turn off slide animation builds.
-    enableTouch: true, // Default: true. If touch support should enabled. Note: the device must support touch.
   },
 };
