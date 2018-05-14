@@ -313,15 +313,6 @@ SlideDeck.prototype.loadConfig_ = function(config) {
     this.makeBuildLists_();
   }
 
-  if (settings.title) {
-    document.title = settings.title.replace(/<br\/?>/, ' ');
-    document.querySelector('[data-config-title]').innerHTML = settings.title;
-  }
-
-  if (settings.subtitle) {
-    document.querySelector('[data-config-subtitle]').innerHTML = settings.subtitle;
-  }
-
   if (Modernizr.touch) {
     var self = this;
 
