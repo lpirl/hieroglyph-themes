@@ -25,6 +25,9 @@ right arrow, down arrow, page up, space
 left arrow, up arrow, page down, backspace
   previous slide
 
+N
+  toggle speaker notes
+
 O
   toggle overview (currently broken – needs CSS fixes)
 
@@ -32,7 +35,7 @@ P
   speaker notes in presenter view (currently broken – needs CSS fixes)
 
 ESC
-  hide notes
+  hide notes, close overview
 
 F
   toggle fullscreen

@@ -100,7 +100,7 @@ table tr:nth-child(odd) {
   border-radius: .1em;
 }
 
-.with-notes.popup slide,
+.with-notes slide,
 .overview slides slide {
   border: .01em solid white;
 }
@@ -120,12 +120,12 @@ table tr:nth-child(odd) {
 }
 
 /* "weaken" animations in presenter mode */
-.popup .next .build .to-build {
+.with-notes .next .build .to-build {
   opacity: .8;
 }
 
 /* "weaken" animations in presenter mode */
-.popup .next .build .build-fade {
+.with-notes .next .build .build-fade {
   opacity: .5;
 }
 

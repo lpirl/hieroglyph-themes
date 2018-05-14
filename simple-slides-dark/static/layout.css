@@ -271,48 +271,48 @@ q::after {
 
 /* "with-nodes" is the class of the body of the presenter view */
 
-.with-notes.popup slides {
+.with-notes slides {
   top: -25%;
   margin-top: 0;
 }
 
-.with-notes.popup slide {
+.with-notes slide {
   overflow: visible;
   pointer-events: none;
   border: 1px solid white;
 }
 
-.with-notes.popup slide.past {
+.with-notes slide.past {
   display: block;
   transform: translateX(-101%) scale(.5);
 }
 
-.with-notes.popup slide.current {
+.with-notes slide.current {
   transform: translateX(-24%) scale(.5);
 }
 
-.with-notes.popup slide.next {
+.with-notes slide.next {
   transform: translateX(22%) scale(.4);
   opacity: .8;
 }
 
-.with-notes.popup slide.far-next {
+.with-notes slide.far-next {
   display: block;
   transform: translate(58%, 0) scale(.3);
   opacity: .6;
 }
 
-.with-notes.popup slide.next .note {
+.with-notes slide.next .note {
   display: none !important;
 }
 
-.with-notes.popup .note {
+.with-notes .note {
   top: 65%;
   height: 30%;
   padding: 0;
 }
 
-.with-notes.popup .note > section {
+.with-notes .note > section {
   height: 100%;
   width: 100%;
   box-sizing: border-box;
@@ -325,7 +325,7 @@ q::after {
   pointer-events: auto;
 }
 
-.overview.popup .note {
+.overview .note {
   display: none !important;
 }
 
