@@ -295,59 +295,6 @@ SlideDeck.prototype.loadConfig_ = function(config) {
     document.querySelector('[data-config-subtitle]').innerHTML = settings.subtitle;
   }
 
-  if (this.config_.presenters) {
-    var presenters = this.config_.presenters;
-    var dataConfigContact = document.querySelector('[data-config-contact]');
-
-    var html = [];
-    if (presenters.length == 1) {
-      var p = presenters[0];
-
-      var presenterTitle = [p.name];
-      if (p.company) {
-        presenterTitle.push(p.company);
-      }
-      html = presenterTitle.join(' - ') + '<br>';
-
-      var gplus = p.gplus ? '<span>g+</span><a href="' + p.gplus +
-          '">' + p.gplus.replace(/https?:\/\//, '') + '</a>' : '';
-
-      var twitter = p.twitter ? '<span>twitter</span>' +
-          '<a href="http://twitter.com/' + p.twitter + '">' +
-          p.twitter + '</a>' : '';
-
-      var www = p.www ? '<span>www</span><a href="' + p.www +
-                        '">' + p.www.replace(/https?:\/\//, '') + '</a>' : '';
-
-      var github = p.github ? '<span>github</span><a href="' + p.github +
-          '">' + p.github.replace(/https?:\/\//, '') + '</a>' : '';
-
-      var html2 = [gplus, twitter, www, github].join('<br>');
-
-      if (dataConfigContact) {
-        dataConfigContact.innerHTML = html2;
-      }
-    } else {
-      for (var i = 0, p; p = presenters[i]; ++i) {
-        html.push(p.name + ' - ' + p.company);
-      }
-      html = html.join('<br>');
-      if (dataConfigContact) {
-        dataConfigContact.innerHTML = html;
-      }
-    }
-
-    var dataConfigPresenter = document.querySelector('[data-config-presenter]');
-    if (dataConfigPresenter) {
-      dataConfigPresenter.innerHTML = html;
-      if (settings.eventInfo) {
-        var date = settings.eventInfo.date;
-        var dateInfo = date ? ' - <time>' + date + '</time>' : '';
-        dataConfigPresenter.innerHTML += settings.eventInfo.title + dateInfo;
-      }
-    }
-  }
-
   if (Modernizr.touch && (!!!('enableTouch' in settings) ||
       settings.enableTouch)) {
     var self = this;
