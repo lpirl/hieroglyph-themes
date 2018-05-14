@@ -1,7 +1,0 @@
-var SLIDE_CONFIG = {
-  // Slide settings
-  settings: {
-    title: '{{ docstitle|e }}',
-    subtitle: '{{ theme_subtitle|e }}',
-  },
-};

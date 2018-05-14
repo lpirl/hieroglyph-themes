@@ -104,7 +104,7 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
     'slide:not([hidden]):not(.hidden)'
   );
 
-  this.loadConfig_(SLIDE_CONFIG);
+  this.loadConfig_();
   this.addEventListeners_();
   this.updateSlides_();
 
@@ -143,6 +143,25 @@ SlideDeck.prototype.addEventListeners_ = function() {
   document.addEventListener('keydown', this.onBodyKeyDown_.bind(this), false);
   window.addEventListener('popstate', this.onPopState_.bind(this), false);
   window.addEventListener('resize', this.onWindowResize_.bind(this), false);
+
+  if (Modernizr.touch) {
+    var self = this;
+
+    // Note: this prevents mobile zoom in/out but prevents iOS from doing
+    // it's crazy scroll over effect and disaligning the slides.
+    window.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+    }, false);
+
+    var hammer = new Hammer(this.container);
+    hammer.ondragend = function(e) {
+      if (e.direction == 'right' || e.direction == 'down') {
+        self.prevSlide();
+      } else if (e.direction == 'left' || e.direction == 'up') {
+        self.nextSlide();
+      }
+    };
+  }
 };
 
 /**
@@ -285,16 +304,8 @@ SlideDeck.prototype.configValueToBool_ = function(value) {
 /**
  * @private
  */
-SlideDeck.prototype.loadConfig_ = function(config) {
-  if (!config) {
-    return;
-  }
-
-  this.config_ = config;
-
-  var settings = this.config_.settings;
-
-  // Store data from  tags
+SlideDeck.prototype.loadConfig_ = function() {
+  // Store data from tags like
   // ``<meta name="hieroglyph-config-{k} content="{v}">`` into
   // ``settingsFromMetaTags[k] = v``.
   var settingsFromMetaTags = {},
@@ -311,25 +322,6 @@ SlideDeck.prototype.loadConfig_ = function(config) {
   if (settingsFromMetaTags["use-builds"] == undefined ||
       this.configValueToBool_(settingsFromMetaTags["use-builds"])) {
     this.makeBuildLists_();
-  }
-
-  if (Modernizr.touch) {
-    var self = this;
-
-    // Note: this prevents mobile zoom in/out but prevents iOS from doing
-    // it's crazy scroll over effect and disaligning the slides.
-    window.addEventListener('touchstart', function(e) {
-      e.preventDefault();
-    }, false);
-
-    var hammer = new Hammer(this.container);
-    hammer.ondragend = function(e) {
-      if (e.direction == 'right' || e.direction == 'down') {
-        self.prevSlide();
-      } else if (e.direction == 'left' || e.direction == 'up') {
-        self.nextSlide();
-      }
-    };
   }
 };
 
