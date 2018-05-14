@@ -32,28 +32,17 @@ O
   toggle overview (currently broken – needs CSS fixes)
 
 P
-  open the presenter view
+  when pressed in the main window:
+  enable & open the presenter window
+
+  when pressed in the presenter window:
+  disable & close the presenter window
+
+  when the slides are not opened via ``file://``, the presenter mode
+  is sticky, which means that it will re-open after reloading the main window
 
 ESC
   hide notes, close overview
 
 F
   toggle fullscreen
-
-presenter view
---------------
-**The presenter view is currently broken but it "just" needs some CSS fixes.**
-
-The slides contain a presenter mode feature (beta) to view + control
-the slides from a popup window.
-
-To **enable** presenter mode, add ``presentme=true`` to the URL:
-
-|  http://localhost:8000/template.html?presentme=true
-
-To **disable** presenter mode, hit:
-
-|  http://localhost:8000/template.html?presentme=false
-
-Presenter mode is sticky, so refreshing the page will persist your
-settings.

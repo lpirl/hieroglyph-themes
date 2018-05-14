@@ -18,44 +18,32 @@ function SlideController() {
   }
 }
 
-SlideController.PRESENTER_MODE_PARAM = 'presentme';
-
 SlideController.prototype.openPopup_= function() {
-  if (!this.isPopup) {
-    var opts = 'menubar=no,location=yes,resizable=yes,scrollbars=no,status=no';
-    this.popup = window.open(location.href, 'mywindow', opts);
+  console.assert(!this.isPopup);
+  var opts = 'menubar=no,location=yes,resizable=yes,scrollbars=no,status=no';
+  this.popup = window.open(location.href, 'mywindow', opts);
+}
+
+SlideController.prototype.closePopup_= function() {
+  console.assert(!this.isPopup);
+  this.popup.close();
+  this.popup = null;
+}
+
+SlideController.prototype.setPresenterModeState_= function(state) {
+  if (this.isPopup) return;
+  try {
+    localStorage.ENABLE_PRESENTOR_MODE = state;
+  } catch (e) {
+    if (!(e instanceof DOMException)) {
+      throw e;
+    }
   }
 }
 
 SlideController.prototype.setupDone = function() {
-  var params = location.search.substring(1).split('&').map(function(el) {
-    return el.split('=');
-  });
 
-  var presentMe = null;
-  for (var i = 0, param; param = params[i]; ++i) {
-    if (param[0].toLowerCase() == SlideController.PRESENTER_MODE_PARAM) {
-      presentMe = param[1] == 'true';
-      break;
-    }
-  }
-
-  if (presentMe !== null) {
-    try {
-      localStorage.ENABLE_PRESENTOR_MODE = presentMe;
-    } catch (e) {
-      if (!(e instanceof DOMException)) {
-        throw e;
-      }
-    }
-    // TODO: use window.history.pushState to update URL instead of the redirect.
-    if (window.history.replaceState) {
-      window.history.replaceState({}, '', location.pathname);
-    } else {
-      location.replace(location.pathname);
-      return false;
-    }
-  }
+  if (this.isPopup) return;
 
   var enablePresenterMode = false;
   try {
@@ -65,6 +53,7 @@ SlideController.prototype.setupDone = function() {
       throw e;
     }
   }
+
   if (enablePresenterMode && JSON.parse(enablePresenterMode)) {
     this.openPopup_();
   }
@@ -73,7 +62,13 @@ SlideController.prototype.setupDone = function() {
   document.addEventListener('keydown', function(e) {
     switch (e.keyCode) {
       case 80: // P
-        that.openPopup_();
+        if (document.hasFocus()) {
+          that.openPopup_();
+          that.setPresenterModeState_(true);
+        } else {
+          that.closePopup_();
+          that.setPresenterModeState_(false);
+        }
         break;
     }
   }, true);
