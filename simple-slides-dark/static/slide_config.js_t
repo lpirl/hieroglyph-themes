@@ -3,9 +3,5 @@ var SLIDE_CONFIG = {
   settings: {
     title: '{{ docstitle|e }}',
     subtitle: '{{ theme_subtitle|e }}',
-    //eventInfo: {
-    //  title: 'Google I/O',
-    //  date: '6/x/2013'
-    //},
   },
 };

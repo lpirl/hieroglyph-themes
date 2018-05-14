@@ -315,9 +315,6 @@ SlideDeck.prototype.loadConfig_ = function(config) {
 
   if (settings.title) {
     document.title = settings.title.replace(/<br\/?>/, ' ');
-    if (settings.eventInfo && settings.eventInfo.title) {
-      document.title +=  ' - ' + settings.eventInfo.title;
-    }
     document.querySelector('[data-config-title]').innerHTML = settings.title;
   }
 
