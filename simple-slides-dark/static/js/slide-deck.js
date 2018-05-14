@@ -278,8 +278,6 @@ SlideDeck.prototype.loadConfig_ = function(config) {
 
   var settings = this.config_.settings;
 
-  this.loadTheme_(settings.theme || []);
-
   if (settings.favIcon) {
     this.addFavIcon_(settings.favIcon);
   }
@@ -762,29 +760,4 @@ SlideDeck.prototype.addFavIcon_ = function(favIcon) {
   el.type = 'image/png';
   el.href = favIcon;
   document.querySelector('head').appendChild(el);
-};
-
-/**
- * @private
- * @param {string} theme
- */
-SlideDeck.prototype.loadTheme_ = function(theme) {
-  var styles = [];
-  if (theme.constructor.name === 'String') {
-    styles.push(theme);
-  } else {
-    styles = theme;
-  }
-
-  for (var i = 0, style; themeUrl = styles[i]; i++) {
-    var style = document.createElement('link');
-    style.rel = 'stylesheet';
-    style.type = 'text/css';
-    if (themeUrl.indexOf('http') == -1) {
-      style.href = this.CSS_DIR_ + themeUrl + '.css';
-    } else {
-      style.href = themeUrl;
-    }
-    document.querySelector('head').appendChild(style);
-  }
 };
