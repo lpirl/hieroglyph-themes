@@ -173,6 +173,17 @@ img[src^="_images/graphviz-"] {
   filter: invert(1);
 }
 
+/* puts text, in a stamp-like box in top right corner of slide */
+.stamp {
+  position: absolute;
+  top: .5em;
+  right: 2em;
+  padding: .25em 2em;
+  transform: rotate(19deg);
+  color: #018571;
+  border: 0.1em dashed #018571;
+}
+
 /*                                                                    */
 /* above, definitions you might use in your reStructuredText document */
 /**********************************************************************/
