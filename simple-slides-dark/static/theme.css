@@ -169,7 +169,8 @@ table tr:nth-child(odd) {
 .invert,
 /* also invert colors of Graphviz images */
 object[data^="_images/graphviz-"],
-img[src^="_images/graphviz-"] {
+img[src^="_images/graphviz-"],
+img[src^="_images/math/"] {
   filter: invert(1);
 }
 

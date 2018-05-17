@@ -364,6 +364,10 @@ div.topic {
   margin: 0;
 }
 
+img[src^="_images/math/"] {
+  height: 1em;
+}
+
 p.topic-title {
   font-size: 1em;
   font-weight: normal;
