@@ -368,6 +368,11 @@ img[src^="_images/math/"] {
   height: 1em;
 }
 
+/* Sometimes, this class shows up and causes ugly vertical margins */
+p.first {
+  margin-bottom: 0;
+}
+
 p.topic-title {
   font-size: 1em;
   font-weight: normal;
