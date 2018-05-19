@@ -427,6 +427,7 @@ slide.fill {
   background-size: cover;
 }
 
+img.fill,
 slide.fill img,
 slide.fill iframe {
   position: absolute;
