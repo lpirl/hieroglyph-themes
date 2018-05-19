@@ -60,6 +60,7 @@ SlideController.prototype.setupDone = function() {
 
   var that = this;
   document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey) return;
     switch (e.keyCode) {
       case 80: // P
         if (document.hasFocus()) {

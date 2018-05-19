@@ -189,6 +189,8 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
     this.controller.sendMsg({keyCode: e.keyCode});
   }
 
+  if (e.ctrlKey) return;
+
   switch (e.keyCode) {
     case 13: // Enter
     case 39: // right arrow
