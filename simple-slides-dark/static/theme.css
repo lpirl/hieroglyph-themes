@@ -202,6 +202,7 @@ img[src^="_images/math/"] {
 
   img[src^="_images/graphviz-"],
   object[data^="_images/graphviz"],
+  div.highlight,
   .invert {
     filter: invert(0);
   }
