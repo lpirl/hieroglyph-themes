@@ -91,7 +91,7 @@ table {
 }
 
 table tr:nth-child(odd) {
-  background-color: #111;
+  background-color: #75757530;
 }
 
 .note {
