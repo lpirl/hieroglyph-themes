@@ -388,27 +388,44 @@ p.topic-title {
 @media print {
 
   @page {
-    size: size: A4 landscape;
-    border: 0;
+    size: 1600px 900px; /* chosen to fit slide dimensions */
     padding: 0;
+    margin: 0;
   }
 
-  html {
-    /* a good value, so that a slide fits on a landscape A4 page: */
-    font-size: 10mm;
+  body {
+    overflow: visible;
   }
 
-  /* we want to fit 4 on a page */
+  /* We have to change the way we layout things a bit, so that page
+   * breaks work as expected in the print view. A bit annoying.
+   * Mainly, that means we declare the slide size on the <slide> instead
+   * of on the <slides> tag. */
+  slides {
+    width: auto;
+    height: auto;
+    margin: 0;
+    left: 0;
+    top: 0;
+
+    transform: none !important;
+  }
+
   slides slide {
-    display: inline-block !important;
+    display: block !important;
+
+    /* 16:9 aspect ratio */
+    width: 40rem;
+    height: 22.5rem;
+
     position: relative;
-    top: auto !important;
-    left: auto !important;
-    margin: 1rem auto !important;
+
+    transform: none !important;
+    transform-origin: top left;
+
     opacity: 1 !important;
     page-break-after: always;
     page-break-inside: avoid;
-    transform: none !important;
   }
 
   slides slide .build * {
