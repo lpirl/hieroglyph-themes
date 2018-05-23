@@ -397,6 +397,12 @@ p.topic-title {
     overflow: visible;
   }
 
+  /* prevents chrom(e|ium) from turning grays into black etc. */
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+
   /* We have to change the way we layout things a bit, so that page
    * breaks work as expected in the print view. A bit annoying.
    * Mainly, that means we declare the slide size on the <slide> instead
