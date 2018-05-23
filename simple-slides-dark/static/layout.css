@@ -430,15 +430,16 @@ p.topic-title {
     transform-origin: top left;
 
     opacity: 1 !important;
-    page-break-after: always;
     page-break-inside: avoid;
+    page-break-inside: always;
   }
 
   slides slide .build * {
     opacity: 1 !important;
   }
 
-  slides slide[hidden] {
+  slides slide[hidden],
+  slide:empty {
     display: none !important;
   }
 
