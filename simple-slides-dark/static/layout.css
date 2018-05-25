@@ -439,6 +439,8 @@ p.topic-title {
   }
 
   slides slide[hidden],
+  slide.projector-test,
+  slide.blackout,
   slide:empty {
     display: none !important;
   }
@@ -455,6 +457,20 @@ p.topic-title {
 slide.fill {
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+slide.blackout *,
+slide.projector-test .slide-no,
+slide.projector-test .slide-footer {
+  opacity: 0;
+}
+
+slide.projector-test,
+slide.projector-test .top,
+slide.projector-test .left,
+slide.projector-test .right,
+slide.projector-test .bottom {
+  padding: 0;
 }
 
 img.fill,
@@ -508,7 +524,8 @@ slide.fill iframe {
 }
 
 .bottom {
-  bottom: .25em;
+  bottom: 0;
+  padding-bottom: .25em;
 }
 
 /* class ``reference`` already used by reStructuredText, unfortunately */
