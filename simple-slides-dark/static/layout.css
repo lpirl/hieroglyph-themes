@@ -20,7 +20,7 @@ html {
    * Changing this basically zooms the page.
    * If you want to change the font size relative to the slide size,
    * set the font size for the body element. */
-  font-size: 50px;
+  font-size: 48px;
 }
 
 body {
@@ -75,6 +75,8 @@ slides > slide {
   padding: .5rem .5rem;
   overflow: hidden;
   box-sizing: border-box;
+
+  font-size: .95rem;
 }
 
 slides > slide.past,
@@ -120,17 +122,25 @@ slides > slide > article:only-child > iframe {
   height: 98%;
 }
 
+hgroup {
+  display: table;
+  width: 100%;
+}
+
 h1, h2, h3 {
+  display: table-cell;
+  height: 2.2em;
+  margin: 0;
+  padding-bottom: .3em;
+  vertical-align: middle;
+
   font-weight: bold;
   letter-spacing: -.02em;
-  min-height: 2em;
-  margin-top: 0;
-  margin-bottom: 0;
 }
 
 h1 {
   font-size: 3em;
-  margin: 1em 0;
+  padding: 1em 0;
   text-align: right;
   line-height: 1.1;
 }
@@ -161,7 +171,7 @@ pre {
 
 iframe {
   width: 100%;
-  height: 75%; /* Is this a sane value? */
+  height: 17em;
   box-sizing: border-box;
 }
 
@@ -525,7 +535,7 @@ slide.fill iframe {
 
 .bottom {
   bottom: 0;
-  padding-bottom: .25em;
+  padding-bottom: .75em;
 }
 
 /* class ``reference`` already used by reStructuredText, unfortunately */
