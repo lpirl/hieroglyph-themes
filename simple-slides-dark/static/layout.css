@@ -561,5 +561,6 @@ ul.logo-banner > li {
 
 ul.logo-banner > li > img {
   height: 1em;
+  max-width: 3em;
   padding: .4em .25em 0 .25em;
 }
