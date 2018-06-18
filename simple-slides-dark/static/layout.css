@@ -566,3 +566,7 @@ ul.logo-banner > li > img {
   max-width: 3em;
   padding: .4em .25em 0 .25em;
 }
+
+slide.no-title > hgroup {
+  display: none;
+}
