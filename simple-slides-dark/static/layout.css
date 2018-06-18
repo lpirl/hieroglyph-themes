@@ -552,6 +552,8 @@ ul.logo-banner {
   text-align: center;
   margin-bottom: .5em;
   margin-top: .5em;
+  margin-left: -.5em;
+  margin-right: -.5em;
 }
 
 ul.logo-banner > li {
