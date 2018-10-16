@@ -112,7 +112,7 @@ table tr:nth-child(odd) {
 
 /* when using classes ``build fade``, elements that were shown already */
 .build .build-fade {
-  opacity: .5;
+  opacity: .6;
 }
 
 .build .build-fade:hover {
@@ -126,7 +126,7 @@ table tr:nth-child(odd) {
 
 /* "weaken" animations in presenter mode */
 .with-notes .next .build .build-fade {
-  opacity: .5;
+  opacity: .6;
 }
 
 /**********************************************************************/
