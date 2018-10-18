@@ -94,6 +94,10 @@ table tr:nth-child(odd) {
   background-color: #75757530;
 }
 
+div.figure {
+  border: 1px solid #757575;
+}
+
 .note {
   border: .01em solid white;
   font-size: .6em;
