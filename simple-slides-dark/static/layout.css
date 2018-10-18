@@ -502,13 +502,6 @@ slide.fill iframe {
   z-index: -1;
 }
 
-.largest  {font-size: 3.0em;}
-.larger   {font-size: 2.0em;}
-.large    {font-size: 1.5em;}
-.small    {font-size: 0.8em;}
-.smaller  {font-size: 0.6em;}
-.smallest {font-size: 0.4em;}
-
 .strike-through {
   text-decoration: line-through;
 }
@@ -551,6 +544,13 @@ slide.fill iframe {
   right: 0em;
   text-align: right;
 }
+
+.largest  {font-size: 3.0em;}
+.larger   {font-size: 2.0em;}
+.large    {font-size: 1.5em;}
+.small    {font-size: 0.8em;}
+.smaller  {font-size: 0.6em;}
+.smallest {font-size: 0.4em;}
 
 /* the .logo-banner probably needs some more tweaking */
 ul.logo-banner {
