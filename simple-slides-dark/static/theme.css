@@ -116,7 +116,7 @@ div.figure {
 
 /* when using classes ``build fade``, elements that were shown already */
 .build .build-fade {
-  opacity: .5;
+  opacity: .6;
 }
 
 .build .build-fade:hover {
@@ -130,7 +130,7 @@ div.figure {
 
 /* "weaken" animations in presenter mode */
 .with-notes .next .build .build-fade {
-  opacity: .5;
+  opacity: .6;
 }
 
 /**********************************************************************/

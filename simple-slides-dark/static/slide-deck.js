@@ -143,6 +143,7 @@ SlideDeck.prototype.addEventListeners_ = function() {
   document.addEventListener('keydown', this.onBodyKeyDown_.bind(this), false);
   window.addEventListener('popstate', this.onPopState_.bind(this), false);
   window.addEventListener('resize', this.onWindowResize_.bind(this), false);
+  window.matchMedia('print').addListener(this.onPrint_.bind(this));
 
   if (Modernizr.touch) {
     var self = this;
@@ -663,5 +664,19 @@ SlideDeck.prototype.updateHash_ = function(dontPush) {
     // Record GA hit on this slide.
     window['_gaq'] && window['_gaq'].push(['_trackPageview',
                                           document.location.href]);
+  }
+};
+
+SlideDeck.prototype.onPrint_ = function(mediaQueryList) {
+
+  // print view enabled
+  if (mediaQueryList.matches) {
+    for (var i = 0; i < this.slides.length; ++i) {
+      this.enableSlideFrames_(i);
+    }
+
+  // print view disabled
+  } else {
+    this.updateSlides_(true);
   }
 };
