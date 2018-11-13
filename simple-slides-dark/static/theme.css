@@ -171,9 +171,7 @@ div.figure {
 }
 
 .invert,
-/* also invert colors of Graphviz images */
-object[data^="_images/graphviz-"],
-img[src^="_images/graphviz-"],
+/* also invert colors of imgmath images */
 img[src^="_images/math/"] {
   filter: invert(1);
 }
@@ -204,8 +202,7 @@ img[src^="_images/math/"] {
     color: black;
   }
 
-  img[src^="_images/graphviz-"],
-  object[data^="_images/graphviz"],
+  img[src^="_images/math/"],
   div.highlight,
   .invert {
     filter: invert(0);
