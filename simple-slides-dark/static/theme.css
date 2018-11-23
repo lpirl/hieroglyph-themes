@@ -50,7 +50,7 @@ body {
 
 div.slide-footer,
 div.slide-no {
-  color: #757575;
+  opacity: .5;
 }
 
 a {
@@ -69,7 +69,7 @@ b {
 
 q,
 .quote {
-  color: #757575;
+  opacity: .75;
 }
 
 pre,
@@ -83,7 +83,7 @@ iframe {
 }
 
 :disabled {
-  color: #757575;
+  opacity: .75;
 }
 
 table {
@@ -96,6 +96,12 @@ table tr:nth-child(odd) {
 
 div.figure {
   border: 1px solid #757575;
+}
+
+/* make opacity decrease with level of nesting */
+li > ul,
+li > ol {
+  opacity: .9; /* Or avg(.75; 1)? */
 }
 
 .note {
@@ -116,21 +122,20 @@ div.figure {
 
 /* when using classes ``build fade``, elements that were shown already */
 .build .build-fade {
-  opacity: .6;
+  opacity: .75;
 }
 
 .build .build-fade:hover {
   opacity: 1;
 }
 
-/* "weaken" animations in presenter mode */
-.with-notes .next .build .to-build {
-  opacity: .8;
+/* FIXME: "weaken" animations in presenter mode */
+.with-notes .build .to-build {
+  opacity: .75;
 }
-
-/* "weaken" animations in presenter mode */
-.with-notes .next .build .build-fade {
-  opacity: .6;
+.with-notes .build .build.fade,
+.with-notes .build .build-pfade {
+  opacity: 1;
 }
 
 /**********************************************************************/
@@ -166,8 +171,12 @@ div.figure {
 .drastic                {color:             #eb0027;}
 .drastic-background     {background-color:  #eb0027;}
 
+.understate {
+  opacity: .75;
+}
+
 .ref {
-  color: #757575;
+  opacity: .75;
 }
 
 .invert,
