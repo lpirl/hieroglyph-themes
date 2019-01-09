@@ -171,6 +171,10 @@ li > ol {
 .drastic                {color:             #eb0027;}
 .drastic-background     {background-color:  #eb0027;}
 
+.bold {
+  font-weight: bold;
+}
+
 .understate {
   opacity: .75;
 }
