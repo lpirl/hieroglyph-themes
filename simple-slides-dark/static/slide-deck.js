@@ -88,14 +88,6 @@ SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
 };
 
 /**
- * @param {number} slideNo
- */
-SlideDeck.prototype.loadSlide = function(slideNo) {
-  this.curSlide_ = slideNo;
-  this.updateSlides_();
-};
-
-/**
  * @private
  */
 SlideDeck.prototype.onDomLoaded_ = function(e) {
@@ -114,7 +106,7 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
       slide.addEventListener('click', function(e) {
         if (document.body.classList.contains('overview')) {
           e.preventDefault();
-          that.loadSlide(i);
+          that.setSlide(i);
           document.body.classList.toggle('overview');
         }
       }, false);
@@ -159,7 +151,7 @@ SlideDeck.prototype.addEventListeners_ = function() {
       if (e.direction == 'right' || e.direction == 'down') {
         self.prevSlide();
       } else if (e.direction == 'left' || e.direction == 'up') {
-        self.nextSlide();
+        self.nextSlideStep();
       }
     };
   }
@@ -197,9 +189,17 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
     case 39: // right arrow
     case 40: // down arrow
     case 32: // space
+      this.nextSlideStep();
+      e.preventDefault();
+      break;
+
     case 34: // PgDn
       this.nextSlide();
       e.preventDefault();
+      break;
+
+    case 35: // end
+      this.setSlide(this.slides.length - 1);
       break;
 
     case 37: // left arrow
@@ -208,6 +208,10 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
     case 33: // PgUp
       this.prevSlide();
       e.preventDefault();
+      break;
+
+    case 36: // home
+      this.setSlide(0);
       break;
 
     case 72: // H: Toggle code highlighting
@@ -385,32 +389,37 @@ SlideDeck.prototype.buildNextItem_ = function() {
  */
 SlideDeck.prototype.prevSlide = function(opt_dontPush) {
   if (this.curSlide_ > 0) {
-    var bodyClassList = document.body.classList;
-    bodyClassList.remove('highlight-code');
-
-    // Toggle off speaker notes if they're showing when we move backwards on the
-    // main slides. If we're the speaker notes popup, leave them up.
-    if (this.controller && !this.controller.isPopup) {
-      bodyClassList.remove('with-notes');
-    } else if (!this.controller) {
-      bodyClassList.remove('with-notes');
-    }
-
-    this.prevSlide_ = this.curSlide_--;
-
-    this.updateSlides_(opt_dontPush);
+    this.setSlide(this.curSlide_ - 1, opt_dontPush);
   }
 };
 
 /**
  * @param {boolean=} opt_dontPush
  */
-SlideDeck.prototype.nextSlide = function(opt_dontPush) {
-  if (!document.body.classList.contains('overview') && this.buildNextItem_()) {
+SlideDeck.prototype.nextSlideStep = function(opt_dontPush) {
+  if (!document.body.classList.contains('overview') &&
+      this.buildNextItem_()) {
     return;
   }
+  this.nextSlide(opt_dontPush);
+};
 
+/**
+ * @param {boolean=} opt_dontPush
+ */
+SlideDeck.prototype.nextSlide = function(opt_dontPush) {
   if (this.curSlide_ < this.slides.length - 1) {
+    this.setSlide(this.curSlide_ + 1, opt_dontPush);
+  }
+};
+
+/**
+ * @param {number} slideNo
+ * @param {boolean=} opt_dontPush
+ */
+SlideDeck.prototype.setSlide = function(slideNo, opt_dontPush) {
+
+  if (0 <= slideNo && slideNo < this.slides.length) {
     var bodyClassList = document.body.classList;
     bodyClassList.remove('highlight-code');
 
@@ -422,9 +431,14 @@ SlideDeck.prototype.nextSlide = function(opt_dontPush) {
       bodyClassList.remove('with-notes');
     }
 
-    this.prevSlide_ = this.curSlide_++;
+    this.prevSlide_ = this.curSlide_;
+    this.curSlide_ = slideNo;
 
     this.updateSlides_(opt_dontPush);
+
+  } else {
+    console.log("Non-existent slide number " + slideNo + " has been " +
+                "requested. There is probably a bug somewhere.");
   }
 };
 

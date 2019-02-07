@@ -19,11 +19,20 @@ keyboard shortcuts
 Not sure if they all work (#todo), but if found those keys wired up in
 the source code:
 
-right arrow, down arrow, page up, space
-  next slide
+enter, right arrow, down arrow, space
+  next build item or, if none, next slide
 
-left arrow, up arrow, page down, backspace
+page down
+  next slide, ignore build items
+
+left arrow, up arrow, backspace, page up
   previous slide
+
+home
+  first slide
+
+end
+  last slide
 
 N
   toggle speaker notes
