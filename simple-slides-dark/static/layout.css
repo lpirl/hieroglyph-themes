@@ -166,6 +166,8 @@ span.pre {
 }
 
 pre {
+  margin: .5em .25em;
+  padding: .5em .25em;
   font-size: .6em;
 }
 
