@@ -566,6 +566,9 @@ SlideDeck.prototype.disableSlideFrames_ = function(slideIndex) {
  * @param {Node} frame
  */
 SlideDeck.prototype.disableFrame_ = function(frame) {
+  if(!('src' in frame.dataset)) {
+    frame.dataset.src = frame.src;
+  }
   frame.src = 'about:blank';
 };
 
