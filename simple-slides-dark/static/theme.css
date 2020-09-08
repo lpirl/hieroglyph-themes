@@ -78,8 +78,8 @@ code {
 }
 
 iframe {
-  background: white;
-  border: .01em solid white;
+  background: transparent;
+  border: none;
 }
 
 :disabled {
