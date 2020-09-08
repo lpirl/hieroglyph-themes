@@ -578,3 +578,7 @@ ul.logo-banner > li > img {
 slide.no-title > hgroup {
   display: none;
 }
+
+slide.middle-title > hgroup {
+  height: 100%;
+}
