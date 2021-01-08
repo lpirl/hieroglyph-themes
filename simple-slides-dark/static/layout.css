@@ -521,7 +521,6 @@ slide.fill iframe {
 .bottom {
   display: inline-block;
   position: absolute;
-  padding: .66em .5em;
 }
 
 .top {
