@@ -77,6 +77,8 @@ slides > slide {
   box-sizing: border-box;
 
   font-size: .95rem;
+
+  z-index: -100;
 }
 
 slides > slide.past,
@@ -537,6 +539,11 @@ slide.fill iframe {
 .bottom {
   bottom: 0;
   padding-bottom: .75em;
+}
+
+.background {
+  z-index: -90; /* slide is -100 */
+  padding: 0;
 }
 
 /* class ``reference`` already used by reStructuredText, unfortunately */
