@@ -42,10 +42,10 @@ body {
   text-shadow: none;
 }
 
-* {
+*:not(slides) {
   /* The delay of .1s is a hack to delay the animation to run after
   possible DOM changes (for smoothness). */
-  transition: all .4s ease .1s;
+  transition: all .333s ease 0s;
 }
 
 div.slide-footer,
