@@ -94,10 +94,6 @@ table tr:nth-child(odd) {
   background-color: #75757530;
 }
 
-div.figure {
-  border: 1px solid #757575;
-}
-
 /* make opacity decrease with level of nesting */
 li > ul,
 li > ol {
