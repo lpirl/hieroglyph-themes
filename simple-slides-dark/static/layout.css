@@ -12,6 +12,14 @@
  * Font sizes for content: 1em, .8em, .6em, .4em
  */
 
+
+/* XXX: room for improvement: make more values variables
+ * (those which are used multiple times, those which can be calculated,
+ * etc.) */
+:root {
+  --slide-padding: .5rem;
+}
+
 html {
   height: 100%;
   overflow: hidden;
@@ -72,7 +80,7 @@ slides > slide {
   height: 100%;
   width: 100%;
 
-  padding: .5rem .5rem;
+  padding: var(--slide-padding);
   overflow: hidden;
   box-sizing: border-box;
 
@@ -524,20 +532,19 @@ slide.fill iframe {
 }
 
 .top {
-  top: 0;
+  top: var(--slide-padding);
 }
 
 .left {
-  left: 0;
+  left: var(--slide-padding);
 }
 
 .right {
-  right: 0;
+  right: var(--slide-padding);
 }
 
 .bottom {
-  bottom: 0;
-  padding-bottom: .75em;
+  bottom: var(--slide-padding);
 }
 
 .center {
