@@ -531,20 +531,34 @@ slide.fill iframe {
   position: absolute;
 }
 
+/* class ``reference`` already used by reStructuredText, unfortunately */
+.ref {
+  font-size: .6em;
+  bottom: 0em;
+  right: 0em;
+  text-align: right;
+}
+
 .top {
   top: var(--slide-padding);
+  bottom: auto;
 }
 
 .left {
   left: var(--slide-padding);
+  text-align: left;
+  right: auto;
 }
 
 .right {
   right: var(--slide-padding);
+  text-align: right;
+  left: auto;
 }
 
 .bottom {
   bottom: var(--slide-padding);
+  top: auto;
 }
 
 .center {
@@ -557,14 +571,6 @@ slide.fill iframe {
 .background {
   z-index: -90; /* slide is -100 */
   padding: 0;
-}
-
-/* class ``reference`` already used by reStructuredText, unfortunately */
-.ref {
-  font-size: .6em;
-  bottom: 0em;
-  right: 0em;
-  text-align: right;
 }
 
 .largest  {font-size: 3.0em;}
