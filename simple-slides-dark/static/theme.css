@@ -55,8 +55,10 @@ div.slide-no {
 
 a {
   color: inherit;
+
+  /* ``text-decoration-thickness`` is not well supported yet: https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-thickness#browser_compatibility */
   text-decoration: none;
-  border-bottom: .01em solid while;
+  border-bottom: .01em solid white;
 }
 
 a:hover {
