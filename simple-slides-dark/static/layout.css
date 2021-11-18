@@ -228,9 +228,19 @@ ul {
   padding-left: 1em;
 }
 
+.right ul {
+  list-style-type: none;
+  padding-left: 0em;
+  padding-right: 1em;
+}
+
 ol {
   /* This makes ``ol``s nested in ``ul``s indent as expected. */
   padding-left: 2em;
+}
+.right ol {
+  padding-left: 0em;
+  padding-right: 2em;
 }
 
 li, p.topic-title {
