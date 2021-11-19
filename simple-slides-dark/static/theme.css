@@ -9,26 +9,37 @@
  * can be found at the end of this document.
  */
 
-/* The dark color scheme uses the following colors:
-
-Non-colors:
-  #000 black
-  #757575 gray
-  #fff white
-
-Colors:
-  #018571 turquoise     – primary highlight
-  #077cc0 blue          – secondary highlight
-  #008837 green         – positive
-  #c65301 orange/brown  – negative
-  #eb0027 red           – drastic highlight
-
-Note that all colors and the gray should work on a light background as
-well. If you want a light version (say, for printing), inverting black
-and white might be enough.
-*/
 
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+/* dark color scheme
+ *
+ * Note that all colors and the gray should work on a light background as
+ * well. If you want a light version (say, for printing), inverting black
+ * and white might be enough.
+ *
+ *
+*/
+:root {
+
+  /* aliases for theme colors */
+  --black: #000;
+  --gray: #757575;
+  --white: #fff;
+  --turquoise: #018571;
+  --blue: #077cc0;
+  --green: #008837;
+  --orange: #c65301;
+  --red: #eb0027;
+
+  /* "semantic" aliases for theme colors */
+  --highlight1: var(--turquoise);
+  --highlight2: var(--blue);
+  --positive: var(--green);
+  --negative: var(--orange);
+  --drastic: var(--red);
+
+}
 
 body {
   background: black;
@@ -89,11 +100,11 @@ iframe {
 }
 
 table {
-  border-bottom: .1em solid #757575
+  border-bottom: .1em solid var(--gray)
 }
 
 table tr:nth-child(odd) {
-  background-color: #75757530;
+  background-color: var(--gray)30;
 }
 
 /* make opacity decrease with level of nesting */
@@ -136,6 +147,10 @@ li > ol {
   opacity: 1;
 }
 
+div.contents.topic {
+  border: none;
+}
+
 /**********************************************************************/
 /* below, definitions you might use in your reStructuredText document */
 /*                                                                    */
@@ -144,30 +159,30 @@ li > ol {
  * they have no suffix in order to be quicker to type */
 .black                  {color:             black;}
 .black-background       {color:             black;}
-.gray                   {color:             #757575;}
-.gray-background        {color:             #757575;}
+.gray                   {color:             var(--gray);}
+.gray-background        {color:             var(--gray);}
 .white                  {color:             white;}
 .white-background       {color:             white;}
-.turquoise              {color:             #018571;}
-.turquoise-background   {background-color:  #018571;}
-.highlight1             {color:             #018571;}
-.highlight1-background  {background-color:  #018571;}
-.blue                   {color:             #077cc0;}
-.blue-background        {background-color:  #077cc0;}
-.highlight2             {color:             #077cc0;}
-.highlight2-background  {background-color:  #077cc0;}
-.green                  {color:             #008837;}
-.green-background       {background-color:  #008837;}
-.positive               {color:             #008837;}
-.positive-background    {background-color:  #008837;}
-.orange                 {color:             #c65301;}
-.orange-background      {background-color:  #c65301;}
-.negative               {color:             #c65301;}
-.negative-background    {background-color:  #c65301;}
-.red                    {color:             #eb0027;}
-.red-background         {background-color:  #eb0027;}
-.drastic                {color:             #eb0027;}
-.drastic-background     {background-color:  #eb0027;}
+.turquoise              {color:             var(--turquoise);}
+.turquoise-background   {background-color:  var(--turquoise);}
+.highlight1             {color:             var(--turquoise);}
+.highlight1-background  {background-color:  var(--turquoise);}
+.blue                   {color:             var(--blue);}
+.blue-background        {background-color:  var(--blue);}
+.highlight2             {color:             var(--blue);}
+.highlight2-background  {background-color:  var(--blue);}
+.green                  {color:             var(--green);}
+.green-background       {background-color:  var(--green);}
+.positive               {color:             var(--green);}
+.positive-background    {background-color:  var(--green);}
+.orange                 {color:             var(--orange);}
+.orange-background      {background-color:  var(--orange);}
+.negative               {color:             var(--orange);}
+.negative-background    {background-color:  var(--orange);}
+.red                    {color:             var(--red);}
+.red-background         {background-color:  var(--red);}
+.drastic                {color:             var(--red);}
+.drastic-background     {background-color:  var(--red);}
 
 .bold {
   font-weight: bold;
@@ -194,8 +209,8 @@ img[src^="_images/math/"] {
   right: -.5em;
   padding: .25em 2em;
   transform: rotate(25deg);
-  color: #018571;
-  border: 0.1em dashed #018571;
+  color: var(--turquoise);
+  border: 0.1em dashed var(--turquoise);
 }
 
 /*                                                                    */
