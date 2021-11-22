@@ -562,8 +562,12 @@ slide.fill iframe {
 
 .right {
   right: var(--slide-padding);
-  text-align: right;
   left: auto;
+  text-align: right;
+}
+
+.right pre {
+  text-align: left;
 }
 
 .bottom {
