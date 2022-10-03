@@ -103,8 +103,13 @@ table {
   border-bottom: .1em solid var(--gray)
 }
 
-table tr:nth-child(odd) {
-  background-color: var(--gray)30;
+table th {
+  border: none;
+}
+
+table td, table th {
+  /* chromium what's wrong with you… "important" should not be needed */
+  border-bottom: none ! important;
 }
 
 /* make opacity decrease with level of nesting */
