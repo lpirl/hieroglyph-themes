@@ -541,6 +541,11 @@ slide.fill iframe {
   position: absolute;
 }
 
+table.left,
+table.right {
+  width: auto;
+}
+
 /* class ``reference`` already used by reStructuredText, unfortunately */
 .ref {
   font-size: .6em;
