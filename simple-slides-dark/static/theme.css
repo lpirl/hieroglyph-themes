@@ -218,6 +218,15 @@ img[src^="_images/math/"] {
   border: 0.1em dashed var(--turquoise);
 }
 
+/* show/hide content when presenting/printing */
+.on-screen-only {
+  display: initial;
+}
+
+.on-print-only {
+  display: none;
+}
+
 /*                                                                    */
 /* above, definitions you might use in your reStructuredText document */
 /**********************************************************************/
@@ -238,4 +247,13 @@ img[src^="_images/math/"] {
   .invert {
     filter: invert(0);
   }
+
+  .on-screen-only {
+    display: none;
+  }
+
+  .on-print-only {
+    display: initial;
+  }
+
 }
