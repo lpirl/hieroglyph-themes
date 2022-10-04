@@ -156,6 +156,11 @@ div.contents.topic {
   border: none;
 }
 
+/* hide first level (i.e., slide deck title) from contents */
+div..contents > ul > li > *:not(ul) {
+  display: none;
+}
+
 /**********************************************************************/
 /* below, definitions you might use in your reStructuredText document */
 /*                                                                    */
