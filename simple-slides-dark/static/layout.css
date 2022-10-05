@@ -629,6 +629,10 @@ slide.middle-title > hgroup {
   height: 100%;
 }
 
+slide.right-title > hgroup {
+  text-align: right;
+}
+
 slide.no-footer .slide-footer {
   display: none;
 }
