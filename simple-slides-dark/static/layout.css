@@ -548,7 +548,7 @@ table.right {
 
 /* class ``reference`` already used by reStructuredText, unfortunately */
 .ref {
-  font-size: .6em;
+  font-size: .5em;
   bottom: 0em;
   right: 0em;
   text-align: right;
