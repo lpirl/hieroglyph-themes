@@ -45,6 +45,7 @@ body {
   background: black;
   color: white;
   font-family: Ubuntu, sans-serif;
+  caret-color: transparent;
 }
 
 ::selection {
