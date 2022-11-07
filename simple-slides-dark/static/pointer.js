@@ -9,8 +9,8 @@
 
   var timeout = 3000;
   var color = 'rgba(255, 0, 0, 1)';
-  var size = .5;
-  var size_unit = 'rem';
+  var size = 1;
+  var size_unit = 'vw';
   var pointer = document.createElement('div');
   pointer.style.position = 'fixed';
   pointer.style.top = - 2 * size + size_unit;
