@@ -31,6 +31,10 @@
   parent.appendChild(pointer);
   parent.style.cursor = "none";
 
+  document.querySelectorAll("object").forEach(e => {
+    e.style.pointerEvents = "none";
+  });
+
   var mouseTimer = null;
   function onMouseMove(e){
       if (mouseTimer) {
