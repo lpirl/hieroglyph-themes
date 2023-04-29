@@ -634,6 +634,11 @@ slide.right-title > hgroup {
   text-align: right;
 }
 
+slide.bottom-title > hgroup {
+  position: absolute;
+  bottom: 0;
+}
+
 slide.no-footer .slide-footer {
   display: none;
 }
