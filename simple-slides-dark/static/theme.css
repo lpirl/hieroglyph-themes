@@ -73,7 +73,8 @@ a {
   border-bottom: .01em solid white;
 }
 
-a:hover {
+a:hover,
+a:visited {
   color: inherit;
 }
 
