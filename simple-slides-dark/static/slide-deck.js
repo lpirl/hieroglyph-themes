@@ -214,6 +214,14 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       this.setSlide(0);
       break;
 
+    case 66: // B
+      if (this.controller && !this.controller.isPopup) {
+        for (var i = 0; i < this.slides.length; ++i) {
+          this.slides[i].classList.toggle('blackout');
+        }
+      }
+      break;
+
     case 72: // H: Toggle code highlighting
       document.body.classList.toggle('highlight-code');
       break;

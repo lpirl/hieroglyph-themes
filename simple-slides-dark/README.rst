@@ -55,3 +55,6 @@ ESC
 
 F
   toggle fullscreen
+
+B
+  toggle blackout
