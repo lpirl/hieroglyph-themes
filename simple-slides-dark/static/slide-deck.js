@@ -12,7 +12,7 @@ document.cancelFullScreen = document.webkitCancelFullScreen ||
  */
 function SlideDeck(el) {
   this.curSlide_ = 0;
-  this.prevSlide_ = 0;
+  this.oldSlide_ = 0;
   this.config_ = null;
   this.container = el || document.querySelector('slides');
   this.slides = [];
@@ -92,9 +92,7 @@ SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
  */
 SlideDeck.prototype.onDomLoaded_ = function(e) {
 
-  this.slides = this.container.querySelectorAll(
-    'slide:not([hidden]):not(.hidden)'
-  );
+  this.slides = this.container.querySelectorAll('slide');
 
   this.loadConfig_();
   this.addEventListeners_();
@@ -396,8 +394,10 @@ SlideDeck.prototype.buildNextItem_ = function() {
  * @param {boolean=} opt_dontPush
  */
 SlideDeck.prototype.prevSlide = function(opt_dontPush) {
-  if (this.curSlide_ > 0) {
-    this.setSlide(this.curSlide_ - 1, opt_dontPush);
+  this.setSlide(this.curSlide_ - 1, opt_dontPush);
+  if (this.slides[this.curSlide_].classList.contains('hidden')
+      && this.curSlide_ > 0) {
+    this.prevSlide(opt_dontPush)
   }
 };
 
@@ -416,8 +416,10 @@ SlideDeck.prototype.nextSlideStep = function(opt_dontPush) {
  * @param {boolean=} opt_dontPush
  */
 SlideDeck.prototype.nextSlide = function(opt_dontPush) {
-  if (this.curSlide_ < this.slides.length - 1) {
-    this.setSlide(this.curSlide_ + 1, opt_dontPush);
+  this.setSlide(this.curSlide_ + 1, opt_dontPush);
+  if (this.slides[this.curSlide_].classList.contains('hidden')
+      && this.curSlide_ + 1 < this.slides.length) {
+    this.nextSlide(opt_dontPush)
   }
 };
 
@@ -439,9 +441,8 @@ SlideDeck.prototype.setSlide = function(slideNo, opt_dontPush) {
       bodyClassList.remove('with-notes');
     }
 
-    this.prevSlide_ = this.curSlide_;
+    this.oldSlide_ = this.curSlide_;
     this.curSlide_ = slideNo;
-
     this.updateSlides_(opt_dontPush);
 
   } else {
@@ -520,7 +521,7 @@ SlideDeck.prototype.updateSlides_ = function(opt_dontPush) {
     }
   };
 
-  this.triggerSlideEvent('slideleave', this.prevSlide_);
+  this.triggerSlideEvent('slideleave', this.oldSlide_);
   this.triggerSlideEvent('slideenter', curSlide);
 
   this.updateHash_(dontPush);
