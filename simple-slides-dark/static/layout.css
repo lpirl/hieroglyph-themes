@@ -105,9 +105,6 @@ slides > slide.next {
   transform: translateX(101%);
 }
 
-/* [1] TODO: ``slide:…:after`` probably not needed anymore once we use
- * the slide numbering provided by Hieroglyph instead of the slide
- * numbering provided by JavaScript. */
 div.slide-footer,
 div.slide-no {
   position: absolute;
@@ -303,11 +300,6 @@ q::after {
 
 /* "with-nodes" is the class of the body of the presenter view */
 
-.with-notes slides {
-  top: -25%;
-  margin-top: 0;
-}
-
 .with-notes slide {
   overflow: visible;
   pointer-events: none;
@@ -316,21 +308,21 @@ q::after {
 
 .with-notes slide.past {
   display: block;
-  transform: translateX(-101%) scale(.5);
+  transform: translateX(-61%) scale(.3);
 }
 
 .with-notes slide.current {
-  transform: translateX(-24%) scale(.5);
+  transform: translateX(-20%) scale(.5);
 }
 
 .with-notes slide.next {
-  transform: translateX(22%) scale(.4);
+  transform: translateX(26%) scale(.4);
   opacity: .8;
 }
 
 .with-notes slide.far-next {
   display: block;
-  transform: translate(58%, 0) scale(.3);
+  transform: translate(62%, 0) scale(.3);
   opacity: .6;
 }
 
@@ -549,8 +541,8 @@ table.right {
 /* class ``reference`` already used by reStructuredText, unfortunately */
 .ref {
   font-size: .5em;
-  bottom: var(--slide-padding);
-  right: var(--slide-padding);
+  bottom: calc(2 * var(--slide-padding));
+  right: calc(2 * var(--slide-padding));
   text-align: right;
 }
 
