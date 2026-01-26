@@ -14,7 +14,7 @@
 
 /* dark color scheme
  *
- * Note that all colors and the gray should work on a light background as
+ * Note that all colors and the subdued should work on a light background as
  * well. If you want a light version (say, for printing), inverting black
  * and white might be enough.
  *
@@ -23,34 +23,30 @@
 :root {
 
   /* aliases for theme colors */
-  --black: #000;
-  --gray: #757575;
-  --white: #fff;
-  --turquoise: #018571;
-  --blue: #077cc0;
-  --green: #008837;
-  --orange: #c65301;
-  --red: #eb0027;
+  --background: #000;
+  --foreground: #fff;
+  --subdued: #757575;
 
   /* "semantic" aliases for theme colors */
-  --highlight1: var(--turquoise);
-  --highlight2: var(--blue);
-  --positive: var(--green);
-  --negative: var(--orange);
-  --drastic: var(--red);
-
+  --highlight1: #077cc0;
+  --highlight2: #9e3dff;
+  --highlight3: #018571;
+  --highlight4: #d42b93;
+  --positive: #008837;
+  --negative:#c65301;
+  --drastic: #eb0027;
 }
 
 body {
-  background: black;
-  color: white;
+  background: var(--background);
+  color: var(--foreground);
   font-family: Ubuntu, sans-serif;
   caret-color: transparent;
 }
 
 ::selection {
-  color: black;
-  background-color: white;
+  color: var(--background);
+  background-color: var(--foreground);
   text-shadow: none;
 }
 
@@ -62,20 +58,19 @@ body {
 
 div.slide-footer,
 div.slide-no {
-  opacity: .5;
+  color: var(--subdued);
 }
 
-a {
-  color: inherit;
-
-  /* ``text-decoration-thickness`` is not well supported yet: https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-thickness#browser_compatibility */
+div.slide-footer a {
   text-decoration: none;
-  border-bottom: .01em solid white;
 }
 
+a,
 a:hover,
 a:visited {
   color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
 }
 
 b {
@@ -107,7 +102,7 @@ iframe {
 }
 
 table {
-  border-bottom: .1em solid var(--gray)
+  border-bottom: .1em solid var(--subdued)
 }
 
 table th {
@@ -126,14 +121,14 @@ li > ol {
 }
 
 .note {
-  border: .01em solid white;
+  border-color: var(--foreground);
   font-size: .6em;
   border-radius: .1em;
 }
 
 .with-notes slide,
 .overview slides slide {
-  border: .01em solid white;
+  border-color: var(--foreground);
 }
 
 /* when using classes ``build fade``, elements that are to be shown */
@@ -150,13 +145,23 @@ li > ol {
   opacity: 1;
 }
 
-/* FIXME: "weaken" animations in presenter mode */
 .with-notes .build .to-build {
-  opacity: .75;
+  opacity: .6;
 }
-.with-notes .build .build.fade,
-.with-notes .build .build-pfade {
-  opacity: 1;
+
+@keyframes flash-frames {
+  0% { opacity: .6; }
+  49% { opacity: .6; }
+  50% { opacity: .8; }
+  100% { opacity: .8; }
+}
+
+/* workaround, since there is no ``:first-of-class`` */
+.with-notes slide.current .build .to-build {
+  animation: flash-frames 1s infinite;
+}
+.with-notes slide.current .build .to-build ~ .to-build {
+  animation: none;
 }
 
 div.contents.topic {
@@ -174,39 +179,25 @@ div..contents > ul > li > *:not(ul) {
 
 /* Assuming text colors are more often used than background colors, so
  * they have no suffix in order to be quicker to type */
-.black                  {color:             black;}
-.black-background       {color:             black;}
-.gray                   {color:             var(--gray);}
-.gray-background        {color:             var(--gray);}
-.white                  {color:             white;}
-.white-background       {color:             white;}
-.turquoise              {color:             var(--turquoise);}
-.turquoise-background   {background-color:  var(--turquoise);}
-.highlight1             {color:             var(--turquoise);}
-.highlight1-background  {background-color:  var(--turquoise);}
-.blue                   {color:             var(--blue);}
-.blue-background        {background-color:  var(--blue);}
-.highlight2             {color:             var(--blue);}
-.highlight2-background  {background-color:  var(--blue);}
-.green                  {color:             var(--green);}
-.green-background       {background-color:  var(--green);}
-.positive               {color:             var(--green);}
-.positive-background    {background-color:  var(--green);}
-.orange                 {color:             var(--orange);}
-.orange-background      {background-color:  var(--orange);}
-.negative               {color:             var(--orange);}
-.negative-background    {background-color:  var(--orange);}
-.red                    {color:             var(--red);}
-.red-background         {background-color:  var(--red);}
+.subdued                {color:             var(--subdued);}
+.subdued-background     {background-color:  var(--subdued);}
+.highlight1             {color:             var(--highlight1);}
+.highlight1-background  {background-color:  var(--highlight1);}
+.highlight2             {color:             var(--highlight2);}
+.highlight2-background  {background-color:  var(--highlight2);}
+.highlight3             {color:             var(--highlight3);}
+.highlight3-background  {background-color:  var(--highlight3);}
+.highlight4             {color:             var(--highlight4);}
+.highlight4-background  {background-color:  var(--highlight4);}
+.positive               {color:             var(--positive);}
+.positive-background    {background-color:  var(--positive);}
+.negative               {color:             var(--negative);}
+.negative-background    {background-color:  var(--negative);}
 .drastic                {color:             var(--red);}
 .drastic-background     {background-color:  var(--red);}
 
 .bold {
   font-weight: bold;
-}
-
-.understate {
-  opacity: .75;
 }
 
 .ref {
@@ -226,8 +217,8 @@ img[src^="_images/math/"] {
   right: -.5em;
   padding: .25em 2em;
   transform: rotate(25deg);
-  color: var(--turquoise);
-  border: 0.1em dashed var(--turquoise);
+  color: var(--highlight1);
+  border: 0.1em dashed var(--highlight1);
 }
 
 /* show/hide content when presenting/printing */
