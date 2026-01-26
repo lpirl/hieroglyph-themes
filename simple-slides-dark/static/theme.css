@@ -126,9 +126,17 @@ li > ol {
   border-radius: .1em;
 }
 
-.with-notes slide,
-.overview slides slide {
-  border-color: var(--foreground);
+.with-notes slide {
+  border: 1px solid var(--foreground);
+}
+
+.overview slides slide,
+.overview slides slide .build * {
+  opacity: 1;
+}
+
+.overview slides slide.current {
+  border: 1px solid var(--foreground);
 }
 
 /* when using classes ``build fade``, elements that are to be shown */

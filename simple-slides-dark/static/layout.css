@@ -364,19 +364,9 @@ body.overview {
   height: 30%;
   width: 30%;
   font-size: .3em;
-  opacity: .8;
   cursor: pointer;
   pointer-events: auto !important;
 }
-
-.overview slides slide.current {
-  opacity: 1;
-}
-
-.overview slides slide .build * {
-  opacity: 1;
-}
-
 
 .overview .note {
   display: none !important;
