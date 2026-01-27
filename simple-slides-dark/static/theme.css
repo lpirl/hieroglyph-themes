@@ -158,18 +158,15 @@ li > ol {
 }
 
 @keyframes flash-frames {
-  0% { opacity: .6; }
-  49% { opacity: .6; }
+  0% { opacity: .8; }
   50% { opacity: .8; }
-  100% { opacity: .8; }
+  51% { opacity: .6; }
+  100% { opacity: .6; }
 }
 
 /* workaround, since there is no ``:first-of-class`` */
-.with-notes slide.current .build .to-build {
+.with-notes slide.current .build .build-next {
   animation: flash-frames 1s infinite;
-}
-.with-notes slide.current .build .to-build ~ .to-build {
-  animation: none;
 }
 
 div.contents.topic {

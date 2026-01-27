@@ -335,6 +335,8 @@ SlideDeck.prototype.buildNextBuildItem_ = function() {
 
   toBuild.classList.remove('to-build');
   toBuild.classList.add('build-current');
+  toBuild.classList.remove('build-next');
+  slide.querySelector('.to-build').classList.add('build-next');
 
   return true;
 };
@@ -344,8 +346,8 @@ SlideDeck.prototype.buildNextItem_ = function() {
     var slide = this.slides[this.curSlide_];
     var built = slide.querySelectorAll('.build-current');
 
-    var buildItems = slide.querySelectorAll('[class*="build-item-"]');
     var show_items;
+    var next_items;
 
     // Remove the classes from the previously built item
     if (built) {
@@ -372,22 +374,32 @@ SlideDeck.prototype.buildNextItem_ = function() {
         while ((show_items = slide._buildItems.shift()) === undefined) {};
         if (show_items) {
 
-            // show the next items
+            // show the current items
             show_items.forEach(function(item, index, items) {
                 item.classList.remove('to-build');
+                item.classList.remove('build-next');
                 item.classList.add('build-current');
 
                 if (item.getAttribute('data-build-class')) {
                     item.classList.add(item.getAttribute('data-build-class'));
                 }
             });
-
-            return true;
         }
+
+        if (slide._buildItems.length) {
+
+            while ((next_items = slide._buildItems.shift()) === undefined) {};
+            // mark the next items
+            next_items.forEach(function(item, index, items) {
+                item.classList.add('build-next');
+            });
+            slide._buildItems.unshift(next_items);
+        }
+
+        return true;
     }
 
     return this.buildNextBuildItem_();
-
 };
 
 /**
@@ -485,9 +497,8 @@ SlideDeck.prototype.triggerSlideEvent = function(type, slideNo) {
  * @private
  */
 SlideDeck.prototype.updateSlides_ = function(opt_dontPush) {
-  var dontPush = opt_dontPush || false;
-
   var curSlide = this.curSlide_;
+
   for (var i = 0; i < this.slides.length; ++i) {
     switch (i) {
       case curSlide - 2:
@@ -524,7 +535,7 @@ SlideDeck.prototype.updateSlides_ = function(opt_dontPush) {
   this.triggerSlideEvent('slideleave', this.oldSlide_);
   this.triggerSlideEvent('slideenter', curSlide);
 
-  this.updateHash_(dontPush);
+  this.updateHash_(opt_dontPush || false);
 };
 
 /**
@@ -628,6 +639,9 @@ SlideDeck.prototype.makeBuildLists_ = function () {
     for (var j = 0, item; item = items[j]; ++j) {
       if (item.classList) {
         item.classList.add('to-build');
+        if (j == 0) {
+          item.classList.add('build-next');
+        }
         if (item.parentNode.classList.contains('fade')) {
           item.classList.add('fade');
         }
@@ -670,6 +684,23 @@ SlideDeck.prototype.makeBuildLists_ = function () {
 
     }
 
+    // set ``build-next`` classes for elements ``build-item-``
+    if (slide._buildItems) {
+        var first_next_set = false;
+        for (var j = 0; j < slide._buildItems.length; j++) {
+            if (slide._buildItems[j] === undefined) {
+              continue;
+            }
+            slide._buildItems[j].forEach(function(item, index, items) {
+                if (first_next_set) {
+                    item.classList.remove('build-next');
+                } else {
+                    item.classList.add('build-next');
+                }
+            });
+            first_next_set = true;
+        }
+    }
   }
 };
 
