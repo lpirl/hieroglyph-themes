@@ -165,21 +165,12 @@ li > ol {
 }
 
 .with-notes slide.current .build .build-next {
-  animation: flash-frames 1s infinite;
+  animation: flash-frames .5s infinite;
 }
 
 .with-notes slide.blackout {
   opacity: 1;
-}
-
-.with-notes slide.blackout::before {
-  content: "blackout";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  color: red;
-  font-size: 2em;
+  animation: flash-frames .5s infinite;
 }
 
 div.contents.topic {
