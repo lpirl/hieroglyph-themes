@@ -176,7 +176,7 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
   }
 
   // Forward keydowns to the main slides if we're the popup.
-  if (this.controller && this.controller.isPopup) {
+  if (this.controller.isPopup) {
     this.controller.sendMsg({keyCode: e.keyCode});
   }
 
@@ -213,10 +213,8 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       break;
 
     case 66: // B
-      if (this.controller && !this.controller.isPopup) {
-        for (var i = 0; i < this.slides.length; ++i) {
-          this.slides[i].classList.toggle('blackout');
-        }
+      for (var i = 0; i < this.slides.length; ++i) {
+        this.slides[i].classList.toggle('blackout');
       }
       break;
 

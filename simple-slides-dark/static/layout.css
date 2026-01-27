@@ -479,7 +479,7 @@ slide.fill {
   background-size: cover;
 }
 
-slide.blackout *,
+slide.blackout,
 slide.projector-test .slide-no,
 slide.projector-test .slide-footer {
   opacity: 0;

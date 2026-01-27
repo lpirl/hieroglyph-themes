@@ -164,9 +164,22 @@ li > ol {
   100% { opacity: .6; }
 }
 
-/* workaround, since there is no ``:first-of-class`` */
 .with-notes slide.current .build .build-next {
   animation: flash-frames 1s infinite;
+}
+
+.with-notes slide.blackout {
+  opacity: 1;
+}
+
+.with-notes slide.blackout::before {
+  content: "blackout";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: red;
+  font-size: 2em;
 }
 
 div.contents.topic {
