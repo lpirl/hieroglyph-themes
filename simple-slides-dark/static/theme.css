@@ -202,8 +202,8 @@ div..contents > ul > li > *:not(ul) {
 .positive-background    {background-color:  var(--positive);}
 .negative               {color:             var(--negative);}
 .negative-background    {background-color:  var(--negative);}
-.drastic                {color:             var(--red);}
-.drastic-background     {background-color:  var(--red);}
+.drastic                {color:             var(--drastic);}
+.drastic-background     {background-color:  var(--drastic);}
 
 .bold {
   font-weight: bold;
