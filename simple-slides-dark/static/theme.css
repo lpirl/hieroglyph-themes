@@ -249,15 +249,18 @@ img[src^="_images/math/"] {
     transition: none;
   }
 
-  slides slide {
+  body {
     background-color: white;
     color: black;
   }
 
   img[src^="_images/math/"],
-  div.highlight,
   .invert {
     filter: invert(0);
+  }
+
+  div.highlight {
+    filter: invert(1);
   }
 
   .on-screen-only {
