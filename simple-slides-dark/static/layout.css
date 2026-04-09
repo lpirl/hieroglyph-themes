@@ -465,8 +465,6 @@ p.topic-title {
     opacity: 1 !important;
   }
 
-  slides slide[hidden],
-  slide.projector-test,
   slide.blackout,
   slide:empty {
     display: none !important;
@@ -486,18 +484,8 @@ slide.fill {
   background-size: cover;
 }
 
-slide.blackout,
-slide.projector-test .slide-no,
-slide.projector-test .slide-footer {
+slide.blackout {
   opacity: 0;
-}
-
-slide.projector-test,
-slide.projector-test .top,
-slide.projector-test .left,
-slide.projector-test .right,
-slide.projector-test .bottom {
-  padding: 0;
 }
 
 img.fill,
@@ -528,6 +516,27 @@ slide.fill iframe {
 .bottom {
   display: inline-block;
   position: absolute;
+}
+
+.touching.left {
+  left: 0;
+  margin-left: 0;
+  padding-left: 0;
+}
+.touching.right {
+  right: 0;
+  margin-right: ;
+  padding-right: ;
+}
+.touching.top {
+  top: 0;
+  margin-top: ;
+  padding-top: ;
+}
+.touching.bottom {
+  bottom: 0;
+  margin-bottom: ;
+  padding-bottom: ;
 }
 
 table.left,

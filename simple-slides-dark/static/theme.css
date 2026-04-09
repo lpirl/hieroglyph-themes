@@ -231,18 +231,17 @@ img[src^="_images/math/"] {
   border: 0.1em dashed var(--highlight1);
 }
 
-/* show/hide content when presenting/printing */
-.on-screen-only {
-  display: initial;
-}
-
-.on-print-only {
-  display: none;
-}
 
 /*                                                                    */
 /* above, definitions you might use in your reStructuredText document */
 /**********************************************************************/
+
+@media screen {
+  /* show/hide content when presenting/printing */
+  .in-print-only {
+    display: none;
+  }
+}
 
 @media print {
 
@@ -265,11 +264,15 @@ img[src^="_images/math/"] {
   }
 
   .on-screen-only {
-    display: none;
+    display: none !important;
   }
 
-  .on-print-only {
-    display: initial;
+  /* if, e.g., you have a dark image that needs inversion for print */
+  .invert-in-print-only {
+    filter: invert(1) hue-rotate(180deg);
+  }
+  .plain-invert-in-print-only { /* see ``.plain-invert`` above */
+    filter: invert(1);
   }
 
 }
