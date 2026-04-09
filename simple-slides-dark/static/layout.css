@@ -55,10 +55,6 @@ button {
   vertical-align: middle;
 }
 
-slides > slide[hidden] {
-  display: none !important;
-}
-
 slides {
   display: block;
   position: absolute;
@@ -167,7 +163,6 @@ pre,
 }
 
 span.pre {
-  font-size: 1.1em;
   padding-left: .1em;
   padding-right: .1em;
 }
@@ -258,6 +253,10 @@ slide li li li li li {
 
 slide li li li li li li {
   font-size: 1em;
+}
+
+.hidden {
+  display: none !important;
 }
 
 .quote::before,
@@ -465,6 +464,7 @@ p.topic-title {
     opacity: 1 !important;
   }
 
+  .hidden,
   slide.blackout,
   slide:empty {
     display: none !important;

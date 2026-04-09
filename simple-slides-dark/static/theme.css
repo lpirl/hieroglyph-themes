@@ -253,7 +253,7 @@ object[data^="_images/graphviz-"] {
 @media screen {
   /* show/hide content when presenting/printing */
   .in-print-only {
-    display: none;
+    display: none !important;
   }
 }
 
