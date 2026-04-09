@@ -586,10 +586,13 @@ table.right {
   text-align: center;
 }
 
-.background {
-  z-index: -90; /* slide is -100 */
-  padding: 0;
-}
+/* slide is -100 */
+.highest {z-index:  90;}
+.higher  {z-index:  60;}
+.high    {z-index:  30;}
+.low     {z-index: -30;}
+.lower   {z-index: -60;}
+.lowest  {z-index: -90;}
 
 .largest  {font-size: 3.0em;}
 .larger   {font-size: 2.0em;}
