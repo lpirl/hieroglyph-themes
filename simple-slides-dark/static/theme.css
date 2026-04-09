@@ -87,8 +87,9 @@ q,
   opacity: .75;
 }
 
+code,
 pre,
-code {
+.pre {
   font-family: 'Courier New', monospace;
 }
 
