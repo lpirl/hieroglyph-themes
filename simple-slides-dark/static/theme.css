@@ -219,8 +219,18 @@ div..contents > ul > li > *:not(ul) {
 }
 
 .invert,
-/* also invert colors of imgmath images */
-img[src^="_images/math/"] {
+/* invert colors of imgmath images: */
+img[src^="_images/math/"],
+/* invert colors of Graphviz images: */
+img[src^="_images/graphviz-"],
+object[data^="_images/graphviz-"] {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* It usually looks better when inverting the hue as well, just as done
+ * above. However, if this is not the case for specific images and you
+ * want to invert all colors but not the hue, us this class. */
+.plain-invert {
   filter: invert(1);
 }
 
@@ -258,13 +268,12 @@ img[src^="_images/math/"] {
     color: black;
   }
 
+  .invert,
+  .plain-invert
   img[src^="_images/math/"],
-  .invert {
-    filter: invert(0);
-  }
-
-  div.highlight {
-    filter: invert(1);
+  img[src^="_images/graphviz-"],
+  object[data^="_images/graphviz-"] {
+    filter: none;
   }
 
   .on-screen-only {
