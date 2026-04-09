@@ -189,6 +189,10 @@ div..contents > ul > li > *:not(ul) {
 
 /* Assuming text colors are more often used than background colors, so
  * they have no suffix in order to be quicker to type */
+.forground              {color:             var(--foreground);}
+.forground-background   {background-color:  var(--foreground);}
+.background             {color:             var(--background);}
+.background-background  {background-color:  var(--background);}
 .subdued                {color:             var(--subdued);}
 .subdued-background     {background-color:  var(--subdued);}
 .highlight1             {color:             var(--highlight1);}
