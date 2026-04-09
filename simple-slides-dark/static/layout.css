@@ -525,18 +525,18 @@ slide.fill iframe {
 }
 .touching.right {
   right: 0;
-  margin-right: ;
-  padding-right: ;
+  margin-right: 0;
+  padding-right: 0;
 }
 .touching.top {
   top: 0;
-  margin-top: ;
-  padding-top: ;
+  margin-top: 0;
+  padding-top: 0;
 }
 .touching.bottom {
   bottom: 0;
-  margin-bottom: ;
-  padding-bottom: ;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 table.left,
