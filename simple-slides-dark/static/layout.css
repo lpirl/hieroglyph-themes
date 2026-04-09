@@ -394,6 +394,13 @@ img[src^="_images/math/"] {
   height: 1em;
 }
 
+/* Graphviz directive does not accept option 'width'. Scale up Graphviz
+ * images to better match slide font sizes. */
+object[data^="_images/graphviz-"],
+img[src^="_images/graphviz-"] {
+  zoom: 175%;
+}
+
 /* Sometimes, this class shows up and causes ugly vertical margins */
 p.first {
   margin-bottom: 0;
