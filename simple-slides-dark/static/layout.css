@@ -595,6 +595,7 @@ slide.no-slide-no .bottom {
 }
 
 .center {
+  position: absolute;
   left: 0;
   right: 0;
   margin-left: auto;
