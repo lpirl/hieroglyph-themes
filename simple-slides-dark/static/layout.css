@@ -585,8 +585,13 @@ table.right {
 }
 
 .bottom {
-  bottom: var(--slide-padding);
+  /* consider (font-)size of footer */
+  bottom: calc(var(--slide-padding) + .4em);
   top: auto;
+}
+slide.no-footer .bottom,
+slide.no-slide-no .bottom {
+  bottom: var(--slide-padding);
 }
 
 .center {
