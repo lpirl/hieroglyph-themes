@@ -404,10 +404,12 @@ SlideDeck.prototype.buildNextItem_ = function() {
  * @param {boolean=} opt_dontPush
  */
 SlideDeck.prototype.pastSlide = function(opt_dontPush) {
+  if (this.curSlide_ == 0) {
+    return;
+  }
   this.setSlide(this.curSlide_ - 1, opt_dontPush);
-  if (this.slides[this.curSlide_].classList.contains('hidden')
-      && this.curSlide_ > 0) {
-    this.pastSlide(opt_dontPush)
+  if (this.slides[this.curSlide_].classList.contains('skip')) {
+    this.pastSlide(opt_dontPush);
   }
 };
 
@@ -426,10 +428,12 @@ SlideDeck.prototype.nextSlideStep = function(opt_dontPush) {
  * @param {boolean=} opt_dontPush
  */
 SlideDeck.prototype.nextSlide = function(opt_dontPush) {
+  if (this.curSlide_ + 1 == this.slides.length) {
+    return;
+  }
   this.setSlide(this.curSlide_ + 1, opt_dontPush);
-  if (this.slides[this.curSlide_].classList.contains('hidden')
-      && this.curSlide_ + 1 < this.slides.length) {
-    this.nextSlide(opt_dontPush)
+  if (this.slides[this.curSlide_].classList.contains('skip')) {
+    this.nextSlide(opt_dontPush);
   }
 };
 
