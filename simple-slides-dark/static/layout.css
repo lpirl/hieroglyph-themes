@@ -221,9 +221,7 @@ ul {
 }
 
 .right ul {
-  list-style-type: none;
-  padding-left: 0em;
-  padding-right: 1em;
+  padding-right: 2em;
 }
 
 ol {
@@ -231,7 +229,6 @@ ol {
   padding-left: 2em;
 }
 .right ol {
-  padding-left: 0em;
   padding-right: 2em;
 }
 
@@ -559,13 +556,19 @@ table.right {
 
 .left {
   left: var(--slide-padding);
-  text-align: left;
   right: auto;
 }
 
 .right {
   right: var(--slide-padding);
   left: auto;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
   text-align: right;
 }
 
