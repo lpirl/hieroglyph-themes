@@ -618,6 +618,21 @@ slide.no-slide-no .bottom {
 .smaller  {font-size: 0.6em;}
 .smallest {font-size: 0.4em;}
 
+.flip-v {
+  transform: scaleY(-1);
+  transform-origin: center !important;
+}
+
+.flip-h {
+  transform: scaleX(-1);
+  transform-origin: center !important;
+}
+
+.upend {
+  transform: rotate(180deg);
+  transform-origin: center !important;
+}
+
 /* the .logo-banner probably needs some more tweaking */
 .logo-banner {
   width: 100%;
