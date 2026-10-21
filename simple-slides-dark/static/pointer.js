@@ -52,5 +52,10 @@
   };
   document.addEventListener('mousemove', onMouseMove);
 
+  function beforePrint(e){
+    pointer.style.display = 'none';
+  }
+  window.addEventListener('beforeprint', beforePrint);
+
 
 })(window);
