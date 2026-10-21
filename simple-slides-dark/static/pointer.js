@@ -36,26 +36,29 @@
   });
 
   var mouseTimer = null;
-  function onMouseMove(e){
-      if (mouseTimer) {
-          window.clearTimeout(mouseTimer);
-      } else {
-          pointer.style.display = 'initial';
-      }
-      pointer.style.top = e.clientY + "px";
-      pointer.style.left = e.clientX + "px";
-      mouseTimer = window.setTimeout(function() {
-          pointer.style.display = 'none';
-          mouseTimer = null;
-      }
-      , timeout);
-  };
-  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener(
+    'mousemove',
+    function(e){
+        if (mouseTimer) {
+            window.clearTimeout(mouseTimer);
+        } else {
+            pointer.style.display = 'initial';
+        }
+        pointer.style.top = e.clientY + "px";
+        pointer.style.left = e.clientX + "px";
+        mouseTimer = window.setTimeout(function() {
+            pointer.style.display = 'none';
+            mouseTimer = null;
+        }
+        , timeout);
+    }
+  );
 
-  function beforePrint(e){
-    pointer.style.display = 'none';
-  }
-  window.addEventListener('beforeprint', beforePrint);
-
+  window.addEventListener(
+    'beforeprint',
+    function(e){
+      pointer.style.display = 'none';
+    }
+  );
 
 })(window);
